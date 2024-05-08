@@ -1,45 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Clientes</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-    <h1>Lista de Clientes</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Primeiro Nome</th>
-            <th>Sobrenome</th>
-            <th>Email</th>
-            <th>Telefone de Contato</th>
-            <th>Telefone de Contato Alternativo</th>
-            <th>Endereço</th>
-            <th>Cidade</th>
-            <th>Estado</th>
-            <th>CEP</th>
-            <th>Foto</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cliente : ${listarClientes}">
-            <td th:text="${cliente.id}"></td>
-            <td th:text="${cliente.primeiroNome}"></td>
-            <td th:text="${cliente.sobrenome}"></td>
-            <td th:text="${cliente.email}"></td>
-            <td th:text="${cliente.telContato}"></td>
-            <td th:text="${cliente.telContatoAlternativo}"></td>
-            <td th:text="${cliente.endereco}"></td>
-            <td th:text="${cliente.cidade}"></td>
-            <td th:text="${cliente.estado}"></td>
-            <td th:text="${cliente.cep}"></td>
-            <td><img th:src="${cliente.foto}" alt="Foto do Cliente" width="100" height="100"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</body>
+<html th:replace="~{components/layout :: layout}">
+    <body>
+        <div th:fragment="content">
+            <h1>Lista de Clientes</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${listarClientes}">
+                        <th scope="row" th:text="${cliente.id}"></th>
+                        <td th:text="${cliente.primeiroNome + ' ' + cliente.sobrenome}"></td>
+                        <td th:text="${cliente.email}"></td>
+                        <td th:text="${cliente.telContato}"></td>
+                        <td th:text="${cliente.cidade}"></td>
+                        <td>
+                            <a th:href="@{/clientes/detalhes/{id}(id=${cliente.id})}" class="btn btn-primary">Detalhes</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>

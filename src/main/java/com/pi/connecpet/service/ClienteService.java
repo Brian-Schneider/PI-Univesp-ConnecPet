@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ClienteService {
     List<ClienteDTO> getAllClientes();
+
+    Object getClienteById(Long id);
 }

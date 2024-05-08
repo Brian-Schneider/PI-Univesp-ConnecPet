@@ -24,4 +24,12 @@ public class ClienteServiceImpl implements ClienteService {
                 .toListClienteDto(clienteRepository
                         .findAll());
     }
+
+    @Override
+    public Object getClienteById(Long id) {
+        Cliente cliente = clienteRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        return clienteMapper.toClienteDto(cliente);
+    }
 }

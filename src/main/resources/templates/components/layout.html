@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html th:fragment="layout" lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>ConnecPet</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div th:replace="~{components/navbar::navbar}"></div>
+        <div th:insert="~{this :: content}" class="container"></div>
+    </body>
+</html>

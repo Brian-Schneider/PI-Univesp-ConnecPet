@@ -1,0 +1,35 @@
+[33mcommit b19d28642da7b06444e02d3631fb812459102072[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Brian Schneider de Lima <b.schneider.de.lima@avanade.com>
+Date:   Wed May 8 06:51:53 2024 -0700
+
+    Criação de config e ModelMapperConfig e de ServiceImpl
+
+[33mcommit 2793e07d1f100f24ee410887e5e120c01caf18ef[m
+Author: Brian Schneider de Lima <b.schneider.de.lima@avanade.com>
+Date:   Wed May 8 06:02:20 2024 -0700
+
+    Adição da dependência ModelMapper e Implementação de Mappers
+
+[33mcommit 291a03a453cca9e9a107c3658197e77cd353daee[m
+Author: Brian Schneider de Lima <b.schneider.de.lima@avanade.com>
+Date:   Tue May 7 19:20:16 2024 -0700
+
+    Criação de Controller e Service, de implementação de getAllClientes e criação das páginas Home e de listarCLientes
+
+[33mcommit 4f08c0da185e674a8d5a8b12ecbe62c2500fe4c6[m
+Author: Brian Schneider de Lima <b.schneider.de.lima@avanade.com>
+Date:   Tue May 7 17:12:35 2024 -0700
+
+    Implementação de Repository e DTO e alerações em Model
+
+[33mcommit 30755e016cc32f2edbf2291fa56c4f8dafb7b4ab[m
+Author: Brian Schneider de Lima <b.schneider.de.lima@avanade.com>
+Date:   Tue May 7 15:14:05 2024 -0700
+
+    Implementação da Camada Model
+
+[33mcommit 8dde21329490416e8d51b3069a731da07379a55d[m
+Author: Brian Schneider de Lima <b.schneider.de.lima@avanade.com>
+Date:   Mon May 6 15:26:51 2024 -0700
+
+    Criação do Projeto ConnecPet, criação dos principais Pacotes e configuração de conexão com o Banco de Dados

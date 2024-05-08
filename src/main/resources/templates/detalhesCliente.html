@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+
+  <body>
+    <div th:fragment="content" class="container">
+      <h1 class="my-4">Detalhes do Cliente</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <img th:src="${detalhesCliente.foto}" class="img-fluid rounded-circle" alt="Foto Cliente">
+        </div>
+        <div class="col-md-8">
+          <h2 class="my-3">Informações do Cliente</h2>
+          <p><strong>ID:</strong> <span th:text="${detalhesCliente.id}"></span></p>
+          <p><strong>Nome:</strong> <span th:text="${detalhesCliente.primeiroNome + ' ' + detalhesCliente.sobrenome}"></span></p>
+          <p><strong>Email:</strong> <span th:text="${detalhesCliente.email}"></span></p>
+          <p><strong>Telefone:</strong> <span th:text="${detalhesCliente.telContato}"></span></p>
+          <p><strong>Tel. alternativo:</strong> <span th:text="${detalhesCliente.telContatoAlternativo}"></span></p>
+          <p><strong>Endereço:</strong> <span th:text="${detalhesCliente.endereco}"></span></p>
+          <p><strong>Cidade:</strong> <span th:text="${detalhesCliente.cidade}"></span></p>
+          <p><strong>CEP:</strong> <span th:text="${detalhesCliente.cep}"></span></p>
+          <p><strong>Estado:</strong> <span th:text="${detalhesCliente.estado}"></span></p>
+        </div>
+      </div>
+
+      <h2 class="my-4">Pets</h2>
+      <div class="row">
+        <div th:each="pet : ${detalhesCliente.pets}" class="col-lg-4 col-sm-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title">
+                <span th:text="${pet.name}"></span>
