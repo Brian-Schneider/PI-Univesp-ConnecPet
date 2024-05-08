@@ -10,11 +10,9 @@ import java.util.List;
 public class Cliente extends Pessoa {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("cliente")
     private List<Pet> pets;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("cliente")
     private List<Agendamento> agendamentos;
 
     public List<Pet> getPets() {

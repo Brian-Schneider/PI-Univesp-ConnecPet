@@ -1,43 +1,37 @@
-package com.pi.connecpet.model.entity;
+package com.pi.connecpet.dto;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.pi.connecpet.model.entity.Cliente;
+import com.pi.connecpet.model.entity.Pet;
+import com.pi.connecpet.model.entity.Prestador;
 import com.pi.connecpet.model.enums.TipoServico;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "tb_agendamento",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"data_hora", "id_provider"}))
-public class Agendamento {
+public class AgendamentoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id")
+    @JsonIgnoreProperties("agendamentos")
     private Cliente cliente;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_pet", referencedColumnName = "id")
+    @JsonIgnoreProperties("agendamentos")
     private Pet pet;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_prestador", referencedColumnName = "id")
+    @JsonIgnoreProperties("agendamentos")
     private Prestador prestador;
 
-    @Column(name = "tipo_servico")
-    @Enumerated(EnumType.ORDINAL)
+    @NotNull(message = "O campo Tipo de Serviço é obrigatório")
     private TipoServico tipoServico;
 
-    @Column(name = "data_agendamento")
+    @NotNull(message = "O campo Data Agendamento é obrigatório")
     private LocalDateTime dataAgendamento;
 
-    @Column(name = "hora_agendamento")
+    @NotNull(message = "O campo Hora Agendamento é obrigatório")
     private LocalDateTime horaAgendamento;
 
-    @Column(name = "valor_servico")
+    @NotNull(message = "O campo Valor do Serviço é obrigatório")
     private double valorServico;
 
     public Long getId() {
@@ -60,22 +54,6 @@ public class Agendamento {
         return pet;
     }
 
-    public TipoServico getTipoServico() {
-        return tipoServico;
-    }
-
-    public void setTipoServico(TipoServico tipoServico) {
-        this.tipoServico = tipoServico;
-    }
-
-    public double getValorServico() {
-        return valorServico;
-    }
-
-    public void setValorServico(double valorServico) {
-        this.valorServico = valorServico;
-    }
-
     public void setPet(Pet pet) {
         this.pet = pet;
     }
@@ -86,6 +64,14 @@ public class Agendamento {
 
     public void setPrestador(Prestador prestador) {
         this.prestador = prestador;
+    }
+
+    public TipoServico getTipoServico() {
+        return tipoServico;
+    }
+
+    public void setTipoServico(TipoServico tipoServico) {
+        this.tipoServico = tipoServico;
     }
 
     public LocalDateTime getDataAgendamento() {
@@ -103,6 +89,12 @@ public class Agendamento {
     public void setHoraAgendamento(LocalDateTime horaAgendamento) {
         this.horaAgendamento = horaAgendamento;
     }
+
+    public double getValorServico() {
+        return valorServico;
+    }
+
+    public void setValorServico(double valorServico) {
+        this.valorServico = valorServico;
+    }
 }
-
-
