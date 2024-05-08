@@ -9,4 +9,6 @@ public interface ClienteService {
     List<ClienteDTO> getAllClientes();
 
     Object getClienteById(Long id);
+
+    void saveCliente(ClienteDTO clienteDTO);
 }

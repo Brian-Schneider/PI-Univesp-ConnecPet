@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+    <h1 class="my-4">Cadastrar Cliente</h1>
+    <form th:action="@{/clientes/cadastrar}" th:object="${cliente}" method="post">
+        <div class="form-group">
+            <label for="primeiroNome">Primeiro Nome</label>
+            <input type="text" class="form-control" id="primeiroNome" th:field="*{primeiroNome}">
+        </div>
+        <div class="form-group">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" class="form-control" id="sobrenome" th:field="*{sobrenome}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}">
+        </div>
+        <div class="form-group">
+            <label for="telContato">Telefone</label>
+            <input type="text" class="form-control" id="telContato" th:field="*{telContato}">
+        </div>
+        <div class="form-group">
+            <label for="telContatoAlternativo">Telefone Alternativo</label>
+            <input type="text" class="form-control" id="telContatoAlternativo" th:field="*{telContatoAlternativo}">
+        </div>
+        <div class="form-group">
+            <label for="endereco">Endereço</label>
+            <input type="text" class="form-control" id="endereco" th:field="*{endereco}">
+        </div>
+        <div class="form-group">
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" th:field="*{cidade}">
+        </div>
+        <div class="form-group">
+            <label for="cep">CEP</label>
+            <input type="text" class="form-control" id="cep" th:field="*{cep}">
+        </div>
+        <div class="form-group">
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" id="estado" th:field="*{estado}">
+        </div>
+        <div class="form-group">
+            <label for="foto">Foto</label>
+            <input type="text" class="form-control" id="foto" th:field="*{foto}">
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>

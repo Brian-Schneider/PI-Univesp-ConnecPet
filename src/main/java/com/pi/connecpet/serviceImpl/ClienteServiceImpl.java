@@ -32,4 +32,10 @@ public class ClienteServiceImpl implements ClienteService {
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
         return clienteMapper.toClienteDto(cliente);
     }
+
+    @Override
+    public void saveCliente(ClienteDTO clienteDTO) {
+        Cliente cliente = clienteMapper.toClienteEntity(clienteDTO);
+        clienteRepository.save(cliente);
+    }
 }
