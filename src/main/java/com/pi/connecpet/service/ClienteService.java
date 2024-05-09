@@ -11,4 +11,6 @@ public interface ClienteService {
     Object getClienteById(Long id);
 
     void saveCliente(ClienteDTO clienteDTO);
+
+    void deleteCliente(ClienteDTO clienteDTO);
 }

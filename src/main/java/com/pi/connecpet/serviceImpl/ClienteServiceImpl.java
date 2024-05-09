@@ -38,4 +38,10 @@ public class ClienteServiceImpl implements ClienteService {
         Cliente cliente = clienteMapper.toClienteEntity(clienteDTO);
         clienteRepository.save(cliente);
     }
+
+    @Override
+    public void deleteCliente(ClienteDTO clienteDTO) {
+        Cliente cliente = clienteMapper.toClienteEntity(clienteDTO);
+        clienteRepository.delete(cliente);
+    }
 }

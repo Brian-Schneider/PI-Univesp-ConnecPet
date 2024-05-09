@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+    <form th:action="@{/clientes/remover}" th:object="${cliente}" method="post">
+        <h4 class="my-4">[['Deseja realmente remover o cliente ' + ${cliente.primeiroNome} + ' ' + ${cliente.sobrenome} + '?']]</h4>
+        <input type="hidden" th:field="*{id}" />
+        <input type="submit" value="Sim" class="btn btn-danger" /> |
+        <a th:href="@{/clientes}" class="btn btn-primary">Não</a>
+    </form>
+</div>
+</body>
+</html>
