@@ -26,7 +26,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Object getClienteById(Long id) {
+    public ClienteDTO getClienteById(Long id) {
         Cliente cliente = clienteRepository
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));

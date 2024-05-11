@@ -1,7 +1,9 @@
 package com.pi.connecpet.controller;
 
 import com.pi.connecpet.dto.ClienteDTO;
+import com.pi.connecpet.dto.PetDTO;
 import com.pi.connecpet.service.ClienteService;
+import com.pi.connecpet.service.PetService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private PetService petService;
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleException(Exception ex, HttpServletRequest request) {

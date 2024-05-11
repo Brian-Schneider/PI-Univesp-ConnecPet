@@ -47,6 +47,8 @@ public class PetDTO {
     @JsonIgnoreProperties("pets")
     private Cliente cliente;
 
+    private Long clienteId;
+
     @JsonIgnoreProperties("pet")
     private List<Agendamento> agendamentos;
 
@@ -96,6 +98,14 @@ public class PetDTO {
 
     public void setCor(String cor) {
         this.cor = cor;
+    }
+
+    public Long getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
     }
 
     public Porte getPorte() {

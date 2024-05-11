@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+    <h1 class="my-4">Cadastrar Pet</h1>
+    <form action="#" th:action="@{/pets/alterar}" th:object="${petDTO}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label for="nomePet">Nome do Pet</label>
+            <input type="text" class="form-control" id="nomePet" th:field="*{nomePet}">
+            <span class="error text-danger" th:if="${#fields.hasErrors('nomePet')}" th:errors="*{nomePet}"></span>
+        </div>
+        <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <input type="text" class="form-control" id="cliente" th:value="${clienteDTO.primeiroNome}" readonly>
+            <input type="hidden" th:field="*{clienteId}" th:value="${clienteDTO.id}">
+
+        </div>
+        <div class="form-group">
+            <label for="especie">Espécie</label>
+            <input type="text" class="form-control" id="especie" th:field="*{especie}">
+            <span class="error text-danger" th:if="${#fields.hasErrors('especie')}" th:errors="*{especie}"></span>
+        </div>
+        <div class="form-group">
+            <label for="raca">Raça</label>
+            <input type="text" class="form-control" id="raca" th:field="*{raca}">
+            <span class="error text-danger" th:if="${#fields.hasErrors('raca')}" th:errors="*{raca}"></span>
+        </div>
+        <div class="form-group">
+            <label for="idade">Idade</label>
+            <input type="text" class="form-control" id="idade" th:field="*{idade}">
+            <span class="error text-danger" th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
+        </div>
+        <div class="form-group">
+            <label for="cor">Cor</label>
+            <input type="text" class="form-control" id="cor" th:field="*{cor}">
+            <span class="error text-danger" th:if="${#fields.hasErrors('cor')}" th:errors="*{cor}"></span>
+        </div>
+        <div class="form-group">
+            <label for="porte">Porte</label>
+            <select class="form-control" id="porte" th:field="*{porte}">
+                <option th:each="porte : ${porteValues}" th:value="${porte}" th:text="${porte}"></option>
+            </select>
+            <span class="error text-danger" th:if="${#fields.hasErrors('porte')}" th:errors="*{porte}"></span>
+        </div>
+        <div class="form-group">
+            <label for="sexo">Sexo</label>
+            <select class="form-control" id="sexo" th:field="*{sexo}">
+                <option th:each="sexo : ${sexoValues}" th:value="${sexo}" th:text="${sexo}"></option>
+            </select>
+            <span class="error text-danger" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></span>
+        </div>
+        <div class="form-group">
+            <label for="observacoes">Obeservações</label>
+            <input type="text" class="form-control" id="observacoes" th:field="*{observacoes}">
+            <span class="error text-danger" th:if="${#fields.hasErrors('observacoes')}" th:errors="*{observacoes}"></span>
+        </div>
+        <div class="form-group">
+            <label for="foto">Foto</label>
+            <input type="text" class="form-control" id="foto" th:field="*{foto}">
+            <span class="error text-danger" th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+</body>
+</html>

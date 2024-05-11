@@ -4,6 +4,7 @@
 <div th:fragment="content" class="container">
     <h1 class="my-4">Cadastrar Cliente</h1>
     <form th:action="@{/clientes/cadastrar}" th:object="${clienteDTO}" method="post">
+        <input type="hidden" th:field="*{id}">
         <div class="form-group">
             <label for="primeiroNome">Primeiro Nome</label>
             <input type="text" class="form-control" id="primeiroNome" th:field="*{primeiroNome}">
@@ -54,7 +55,7 @@
             <input type="text" class="form-control" id="foto" th:field="*{foto}">
             <span class="error text-danger" th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>
 </div>
 </body>
