@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+    <body>
+        <div th:fragment="content">
+            <h1>Lista de Pets</h1>
+            <a th:href="@{/pets/cadastrar}" class="btn btn-primary">Cadastrar Pet</a>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Dono</th>
+                        <th scope="col">Espécie/Raça</th>
+                        <th scope="col">Idade</th>
+                        <th scope="col">Porte</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="pet : ${listarPets}">
+                        <th scope="row" th:text="${pet.id}"></th>
+                        <td th:text="${pet.nomePet}"></td>
+                        <td th:text="${pet.cliente.primeiroNome + ' ' + pet.cliente.sobrenome}"></td>
+                        <td th:text="${pet.especie + '/' + pet.raca}"></td>
+                        <td th:text="${pet.idade}"></td>
+                        <td th:text="${pet.porte}"></td>
+                        <td th:text="${pet.sexo}"></td>
+                        <td>
+                            <a th:href="@{/pets/detalhes/{id}(id=${pet.id})}" class="btn btn-primary">Detalhes</a>
+                            <a th:href="@{/pets/alterar/{id}(id=${pet.id})}" class="btn btn-primary">Alterar</a>
+                            <a th:href="@{/pets/remover/{id}(id=${pet.id})}" class="btn btn-primary">Remover</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>

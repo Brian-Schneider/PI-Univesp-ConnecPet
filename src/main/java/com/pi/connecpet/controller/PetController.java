@@ -1,5 +1,6 @@
 package com.pi.connecpet.controller;
 
+import com.pi.connecpet.dto.ClienteDTO;
 import com.pi.connecpet.dto.PetDTO;
 import com.pi.connecpet.service.ClienteService;
 import com.pi.connecpet.service.PetService;
@@ -12,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class PetController {
@@ -30,10 +33,31 @@ public class PetController {
         return mav;
     }
 
-    @GetMapping("/pets/cadastrar/{clienteId}")
-    public String CadastrarPet(Model model, @PathVariable Long clienteId){
-        model.addAttribute("clienteDTO", clienteService.getClienteById(clienteId));
+    @GetMapping("/pets")
+    public String ListarPets(Model model){
+        model.addAttribute("listarPets", petService.getAllPets());
+        return "lista-pets";
+    }
+
+    @GetMapping("/pets/cadastrar")
+    public String CadastrarPet(Model model){
+        List<ClienteDTO> clientesDTO = clienteService.getAllClientes();
+
+
         model.addAttribute("petDTO", new PetDTO());
+        model.addAttribute("listarClientes", clientesDTO);
+        model.addAttribute("porteValues", petService.getPorteValues());
+        model.addAttribute("sexoValues", petService.getSexoValues());
+        return "cadastrar-pet";
+    }
+
+    @GetMapping("/pets/cadastrar/{clienteId}")
+    public String CadastrarPet(Model model, @PathVariable(required = false) Long clienteId){
+        if (clienteId == null) {
+            model.addAttribute("clienteDTO", clienteService.getClienteById(clienteId));
+        }
+        model.addAttribute("petDTO", new PetDTO());
+        model.addAttribute("listarClientes", clienteService.getAllClientes());
         model.addAttribute("porteValues", petService.getPorteValues());
         model.addAttribute("sexoValues", petService.getSexoValues());
         return "cadastrar-pet";
@@ -41,7 +65,7 @@ public class PetController {
 
     @PostMapping("/pets/cadastrar/{clienteId}")
     public String CadastrarPet(@Valid @ModelAttribute PetDTO petDTO,
-                               BindingResult result, @PathVariable Long clienteId) {
+                               BindingResult result, @PathVariable(required = false) Long clienteId) {
 
         if (result.hasErrors()) {
             return "cadastrar-pet";
@@ -53,7 +77,9 @@ public class PetController {
     @GetMapping("/pets/alterar/{id}")
     public String AlterarPet(Model model, @PathVariable Long id) {
         PetDTO petDTO = petService.getPetById(id);
+        List<ClienteDTO> clientesDTO = clienteService.getAllClientes();
         model.addAttribute("petDTO", petService.getPetById(id));
+        model.addAttribute("listarClientes", clientesDTO);
         model.addAttribute("clienteDTO", clienteService.getClienteById(petDTO.getClienteId()));
         model.addAttribute("porteValues", petService.getPorteValues());
         model.addAttribute("sexoValues", petService.getSexoValues());

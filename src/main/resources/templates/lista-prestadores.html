@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+<body>
+<div th:fragment="content">
+    <h1>Lista de Prestadores</h1>
+    <form method="get" action="/prestadores" class="form-inline my-2 my-lg-0">
+        <select name="tipo" class="form-control mr-sm-2">
+            <option value="" th:selected="${#strings.isEmpty(tipo)}">TODOS</option>
+            <option value="PetSitter" th:selected="${tipo != null && tipo.equals('PetSitter')}">Pet Sitter</option>
+            <option value="PetWalker" th:selected="${tipo != null && tipo.equals('PetWalker')}">Pet Walker</option>
+        </select>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+    </form>
+    <a th:href="@{/prestadores/cadastrar}" class="btn btn-primary">Cadastrar Prestador</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="prestador : ${listarPrestadores}">
+            <th scope="row" th:text="${prestador.id}"></th>
+            <td th:text="${prestador.primeiroNome + ' ' + prestador.sobrenome}"></td>
+            <td th:text="${prestador.cpf}"></td>
+            <td th:text="${prestador.telContato}"></td>
+            <td th:text="${prestador.email}"></td>
+            <td>
+                <a th:href="@{/prestadores/detalhes/{id}(id=${prestador.id})}" class="btn btn-primary">Detalhes</a>
+                <a th:href="@{/prestadores/alterar/{id}(id=${prestador.id})}" class="btn btn-primary">Alterar</a>
+                <a th:href="@{/prestadores/remover/{id}(id=${prestador.id})}" class="btn btn-primary">Remover</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -14,6 +14,8 @@ import com.pi.connecpet.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PetServiceImpl implements PetService {
 
@@ -43,6 +45,17 @@ public class PetServiceImpl implements PetService {
     public void deletePet(PetDTO petDTO) {
         Pet pet = petMapper.toPetEntity(petDTO);
         petRepository.delete(pet);
+    }
+
+    @Override
+    public List<PetDTO> getAllPets() {
+        List<PetDTO> pets = petMapper.toListPetDto(petRepository.findAll());
+        for (PetDTO pet : pets) {
+            if (pet.getCliente() == null) {
+                throw new RuntimeException("Cliente not found for pet with id " + pet.getId());
+            }
+        }
+        return pets;
     }
 
     @Override

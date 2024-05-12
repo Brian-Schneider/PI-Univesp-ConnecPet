@@ -2,6 +2,8 @@ package com.pi.connecpet.service;
 
 import com.pi.connecpet.dto.PetDTO;
 
+import java.util.List;
+
 public interface PetService {
     void savePet(PetDTO petDTO, Long clienteId);
 
@@ -14,4 +16,6 @@ public interface PetService {
     Object getSexoValues();
 
     void deletePet(PetDTO petDTO);
+
+    List<PetDTO> getAllPets();
 }
