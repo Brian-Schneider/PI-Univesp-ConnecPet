@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+    <h2 class="text-center">Register PetWalker</h2>
+    <form th:action="@{/petwalkers/cadastrar}" th:object="${petWalkerDTO}" method="post">
+        <div class="form-group">
+            <label>Prestador</label>
+            <input type="text" th:field="*{prestador}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Tempo de Passeio</label>
+            <input type="number" step="0.01" th:field="*{tempoPasseio}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Portes Aceitos</label>
+            <!-- You might want to replace this with a dropdown or multiple checkboxes, depending on how you want to represent the Porte enum -->
+            <input type="text" th:field="*{portesAceitos}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Valor Hora Passeio</label>
+            <input type="number" step="0.01" th:field="*{valorHoraPasseio}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

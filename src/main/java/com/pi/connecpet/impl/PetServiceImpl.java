@@ -1,10 +1,9 @@
-package com.pi.connecpet.serviceImpl;
+package com.pi.connecpet.impl;
 
 import com.pi.connecpet.dto.ClienteDTO;
 import com.pi.connecpet.dto.PetDTO;
 import com.pi.connecpet.mapper.ClienteMapper;
 import com.pi.connecpet.mapper.PetMapper;
-import com.pi.connecpet.model.entity.Cliente;
 import com.pi.connecpet.model.entity.Pet;
 import com.pi.connecpet.model.enums.Porte;
 import com.pi.connecpet.model.enums.Sexo;

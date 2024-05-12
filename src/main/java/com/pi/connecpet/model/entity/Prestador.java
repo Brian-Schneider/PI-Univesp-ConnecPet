@@ -12,13 +12,13 @@ public class Prestador extends Pessoa {
     private String cpf;
 
     @Column(name = "pet_sitter")
-    private boolean ehPetSitter;
+    private boolean isPetSitter;
 
     @OneToOne(mappedBy = "prestador", cascade = CascadeType.ALL)
     private PetSitter petSitter;
 
     @Column(name = "pet_walker")
-    private boolean ehPetWalker;
+    private boolean isPetWalker;
 
     @OneToOne(mappedBy = "prestador", cascade = CascadeType.ALL)
     private PetWalker petWalker;
@@ -34,12 +34,12 @@ public class Prestador extends Pessoa {
         this.cpf = cpf;
     }
 
-    public boolean isEhPetSitter() {
-        return ehPetSitter;
+    public boolean getIsPetSitter() {
+        return isPetSitter;
     }
 
-    public void setEhPetSitter(boolean ehPetSitter) {
-        this.ehPetSitter = ehPetSitter;
+    public void setIsPetSitter(boolean isPetSitter) {
+        this.isPetSitter = isPetSitter;
     }
 
     public PetSitter getPetSitter() {
@@ -58,12 +58,12 @@ public class Prestador extends Pessoa {
         this.petWalker = petWalker;
     }
 
-    public boolean isEhPetWalker() {
-        return ehPetWalker;
+    public boolean getIsPetWalker() {
+        return isPetWalker;
     }
 
-    public void setEhPetWalker(boolean ehPetWalker) {
-        this.ehPetWalker = ehPetWalker;
+    public void setisPetWalker(boolean isPetWalker) {
+        this.isPetWalker = isPetWalker;
     }
 
     public List<Agendamento> getAgendamentos() {

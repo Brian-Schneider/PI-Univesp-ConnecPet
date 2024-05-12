@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html th:replace="~{components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+
+    <div class="jumbotron">
+        <h1 class="display-4">Detalhes do Prestador</h1>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card">
+                <img th:src="${detalhesPrestador.foto}" class="card-img-top" alt="Foto Prestador">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${detalhesPrestador.primeiroNome + ' ' + detalhesPrestador.sobrenome}"></h5>
+                    <p><strong>ID:</strong> <span th:text="${detalhesPrestador.id}"></span></p>
+                    <p><strong>Nome:</strong> <span th:text="${detalhesPrestador.primeiroNome + ' ' + detalhesPrestador.sobrenome}"></span></p>
+                    <p><strong>Endereço:</strong> <span th:text="${detalhesPrestador.endereco}"></span></p>
+                    <p><strong>Cidade:</strong> <span th:text="${detalhesPrestador.cidade}"></span></p>
+                    <p><strong>CEP:</strong> <span th:text="${detalhesPrestador.cep}"></span></p>
+                    <p><strong>Estado:</strong> <span th:text="${detalhesPrestador.estado}"></span></p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card bg-light mb-3">
+                <div class="card-header">Contatos do Prestador</div>
+                <div class="card-body">
+                    <p><strong>Email:</strong> <span th:text="${detalhesPrestador.email}"></span></p>
+                    <p><strong>Telefone:</strong> <span th:text="${detalhesPrestador.telContato}"></span></p>
+                    <p><strong>Tel. alternativo:</strong> <span th:text="${detalhesPrestador.telContatoAlternativo}"></span></p>
+                    <p><strong>CPF:</strong> <span th:text="${detalhesPrestador.cpf}"></span></p>
+                </div>
+            </div>
+
+            <div class="card bg-light mb-3" th:if="${detalhesPrestador.petSitterDTO != null}">
+                <div class="card-header">Info. Pet Sitter</div>
+                <div class="card-body">
+                    <p><strong>Aceita Hospedagens:</strong> <span th:if="${detalhesPrestador.getPetSitterDTO().isHospedagem() == true}">Yes</span><span th:if="${detalhesPrestador.getPetSitterDTO().isHospedagem() == false}">No</span></p>
+                    <p><strong>Pets Hospedados:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().petsHospedados}"></span></p>
+                    <p><strong>Limite de Pets a Hospedar:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().limitePetsHospedados}"></span></p>
+                    <p><strong>Preço da Hora:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().valorHoraHospedada}"></span></p>
+                    <p><strong>Descrição da Locação:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().descricaoLocacao}"></span></p>
+                    <p><strong>Descrição da Rotina:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().descricaoRotina}"></span></p>
+                </div>
+            </div>
+
+            <div class="card bg-light mb-3" th:if="${detalhesPrestador.petWalkerDTO != null}">
+                <div class="card-header">Info. Pet Walker</div>
+                <div class="card-body">
+                    <p><strong>Tempo médio por passeio:</strong><span th:text="${detalhesPrestador.getPetWalkerDTO().tempoPasseio}"></span></p>
+                    <p><strong>Preço por Hora de Passeio:</strong><span th:text="${detalhesPrestador.getPetWalkerDTO().valorHoraPasseio}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

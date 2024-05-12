@@ -57,15 +57,13 @@ public class PrestadorDTO {
     @Size(max = 14, message = "O campo CPF deve ter no máximo 11 caracteres")
     private String cpf;
 
-    private boolean ehPetSitter;
 
     @JsonIgnoreProperties("prestador")
-    private PetSitter petSitter;
+    private PetSitterDTO petSitterDTO;
 
-    private boolean ehPetWalker;
 
     @JsonIgnoreProperties("prestador")
-    private PetWalker petWalker;
+    private PetWalkerDTO petWalkerDTO;
 
     @JsonIgnoreProperties("prestador")
     private List<Agendamento> agendamentos;
@@ -78,124 +76,130 @@ public class PrestadorDTO {
         this.id = id;
     }
 
-    public String getPrimeiroNome() {
+    public @NotNull(message = "O campo Nome é obrigatório") @Size(min = 2, max = 50, message = "O campo Nome deve ter entre 2 e 50 caracteres") String getPrimeiroNome() {
         return primeiroNome;
     }
 
-    public void setPrimeiroNome(String primeiroNome) {
+    public void setPrimeiroNome(@NotNull(message = "O campo Nome é obrigatório") @Size(min = 2, max = 50, message = "O campo Nome deve ter entre 2 e 50 caracteres") String primeiroNome) {
         this.primeiroNome = primeiroNome;
     }
 
-    public String getSobrenome() {
+    public @NotNull(message = "O campo Sobrenome é obrigatório") @Size(min = 2, max = 50, message = "O campo Sobrenome deve ter entre 2 e 50 caracteres") String getSobrenome() {
         return sobrenome;
     }
 
-    public void setSobrenome(String sobrenome) {
+    public void setSobrenome(@NotNull(message = "O campo Sobrenome é obrigatório") @Size(min = 2, max = 50, message = "O campo Sobrenome deve ter entre 2 e 50 caracteres") String sobrenome) {
         this.sobrenome = sobrenome;
     }
 
-    public String getEmail() {
+    public @NotNull(message = "O campo Email é obrigatório") @Size(max = 60, message = "O campo Email deve ter no máximo 60 caracteres") @Email(message = "Deve ser um Email válido") String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(@NotNull(message = "O campo Email é obrigatório") @Size(max = 60, message = "O campo Email deve ter no máximo 60 caracteres") @Email(message = "Deve ser um Email válido") String email) {
         this.email = email;
     }
 
-    public String getTelContato() {
+    public @NotNull(message = "O campo Telefone é obrigatório") @Size(max = 14, message = "O campo Telefone deve ter no máximo 14 caracteres") String getTelContato() {
         return telContato;
     }
 
-    public void setTelContato(String telContato) {
+    public void setTelContato(@NotNull(message = "O campo Telefone é obrigatório") @Size(max = 14, message = "O campo Telefone deve ter no máximo 14 caracteres") String telContato) {
         this.telContato = telContato;
     }
 
-    public String getTelContatoAlternativo() {
+    public @Size(max = 14, message = "O campo Telefone Alternativo deve ter no máximo 14 caracteres") String getTelContatoAlternativo() {
         return telContatoAlternativo;
     }
 
-    public void setTelContatoAlternativo(String telContatoAlternativo) {
+    public void setTelContatoAlternativo(@Size(max = 14, message = "O campo Telefone Alternativo deve ter no máximo 14 caracteres") String telContatoAlternativo) {
         this.telContatoAlternativo = telContatoAlternativo;
     }
 
-    public String getEndereco() {
+    public @NotNull(message = "O campo Endereço é obrigatório") @Size(max = 100, message = "O campo Endereço deve ter no máximo 100 caracteres") String getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(@NotNull(message = "O campo Endereço é obrigatório") @Size(max = 100, message = "O campo Endereço deve ter no máximo 100 caracteres") String endereco) {
         this.endereco = endereco;
     }
 
-    public String getCidade() {
+    public @NotNull(message = "O campo Bairro é obrigatório") @Size(max = 50, message = "O campo Bairro deve ter no máximo 50 caracteres") String getCidade() {
         return cidade;
     }
 
-    public void setCidade(String cidade) {
+    public void setCidade(@NotNull(message = "O campo Bairro é obrigatório") @Size(max = 50, message = "O campo Bairro deve ter no máximo 50 caracteres") String cidade) {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public @NotNull(message = "O campo Cidade é obrigatório") @Size(max = 50, message = "O campo Cidade deve ter no máximo 50 caracteres") String getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(@NotNull(message = "O campo Cidade é obrigatório") @Size(max = 50, message = "O campo Cidade deve ter no máximo 50 caracteres") String estado) {
         this.estado = estado;
     }
 
-    public String getCep() {
+    public @NotNull(message = "O campo CEP é obrigatório") @Size(max = 9, message = "O campo CEP deve ter no máximo 9 caracteres") String getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(@NotNull(message = "O campo CEP é obrigatório") @Size(max = 9, message = "O campo CEP deve ter no máximo 9 caracteres") String cep) {
         this.cep = cep;
     }
 
-    public String getFoto() {
+    public @Size(max = 2000, message = "A URL não deve exceder 2000 caracteres") String getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(@Size(max = 2000, message = "A URL não deve exceder 2000 caracteres") String foto) {
         this.foto = foto;
     }
 
-    public String getCpf() {
+    public @NotNull(message = "O campo CPF é obrigatório") @Size(max = 14, message = "O campo CPF deve ter no máximo 11 caracteres") String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(@NotNull(message = "O campo CPF é obrigatório") @Size(max = 14, message = "O campo CPF deve ter no máximo 11 caracteres") String cpf) {
         this.cpf = cpf;
     }
 
-    public boolean isEhPetSitter() {
-        return ehPetSitter;
+
+
+    public PetSitterDTO getPetSitterDTO() {
+        return petSitterDTO;
     }
 
-    public void setEhPetSitter(boolean ehPetSitter) {
-        this.ehPetSitter = ehPetSitter;
+    public void setPetSitterDTO(PetSitterDTO petSitterDTO) {
+        this.petSitterDTO = petSitterDTO;
     }
 
-    public PetSitter getPetSitter() {
-        return petSitter;
+    private boolean isPetSitter;
+
+    public boolean getIsPetSitter() {
+        return isPetSitter;
     }
 
-    public void setPetSitter(PetSitter petSitter) {
-        this.petSitter = petSitter;
+    public void setIsPetSitter(boolean isPetSitter) {
+        this.isPetSitter = isPetSitter;
     }
 
-    public boolean isEhPetWalker() {
-        return ehPetWalker;
+    private boolean isPetWalker;
+
+    public boolean getIsPetWalker() {
+        return isPetWalker;
     }
 
-    public void setEhPetWalker(boolean ehPetWalker) {
-        this.ehPetWalker = ehPetWalker;
+    public void setIsPetWalker(boolean isPetWalker) {
+        this.isPetWalker = isPetWalker;
     }
 
-    public PetWalker getPetWalker() {
-        return petWalker;
+    public PetWalkerDTO getPetWalkerDTO() {
+        return petWalkerDTO;
     }
 
-    public void setPetWalker(PetWalker petWalker) {
-        this.petWalker = petWalker;
+    public void setPetWalkerDTO(PetWalkerDTO petWalkerDTO) {
+        this.petWalkerDTO = petWalkerDTO;
     }
 
     public List<Agendamento> getAgendamentos() {

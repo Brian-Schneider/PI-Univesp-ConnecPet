@@ -9,11 +9,13 @@ public class PetSitterDTO {
 
     private Long id;
 
-    @NotNull(message = "O campo Prestador é obrigatório")
+    private Long prestadorId;
+
     private Prestador prestador;
 
     @NotNull(message = "O campo Hospedagem é obrigatório")
     private boolean hospedagem;
+
 
     private int petsHospedados;
 
@@ -86,6 +88,14 @@ public class PetSitterDTO {
 
     public double getValorHoraHospedada() {
         return valorHoraHospedada;
+    }
+
+    public Long getPrestadorId() {
+        return prestadorId;
+    }
+
+    public void setPrestadorId(Long prestadorId) {
+        this.prestadorId = prestadorId;
     }
 
     public void setValorHoraHospedada(double valorHoraHospedada) {

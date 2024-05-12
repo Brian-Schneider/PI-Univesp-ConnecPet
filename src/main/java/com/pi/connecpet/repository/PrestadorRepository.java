@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface PrestadorRepository extends JpaRepository<Prestador, Long> {
 
-    List<Prestador> findByEhPetSitter(boolean b);
+    List<Prestador> findByIsPetSitter(boolean b);
 
-    List<Prestador> findByEhPetWalker(boolean b);
+    List<Prestador> findByIsPetWalker(boolean b);
 }

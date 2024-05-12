@@ -18,4 +18,5 @@ public interface PetService {
     void deletePet(PetDTO petDTO);
 
     List<PetDTO> getAllPets();
+
 }

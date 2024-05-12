@@ -32,31 +32,31 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes")
-    public String ListarClientes(Model model){
+    public String listarClientes(Model model){
         model.addAttribute("listarClientes", clienteService.getAllClientes());
         return "lista-clientes";
     }
 
     @GetMapping("/clientes/detalhes/{id}")
-    public String DetalhesCliente(Model model, @PathVariable Long id){
+    public String detalhesCliente(Model model, @PathVariable Long id){
         model.addAttribute("detalhesCliente", clienteService.getClienteById(id));
         return "detalhes-cliente";
     }
 
     @GetMapping("/clientes/cadastrar")
-    public String CadastrarCliente(Model model){
+    public String cadastrarCliente(Model model){
         model.addAttribute("clienteDTO", new ClienteDTO());
         return "cadastrar-cliente";
     }
 
     @GetMapping("/clientes/alterar/{id}")
-    public String AlterarCliente(Model model, @PathVariable Long id){
+    public String alterarCliente(Model model, @PathVariable Long id){
         model.addAttribute("clienteDTO", clienteService.getClienteById(id));
         return "alterar-cliente";
     }
 
     @PostMapping("/clientes/cadastrar")
-    public String CadastrarCliente(@Valid @ModelAttribute ClienteDTO clienteDTO,
+    public String cadastrarCliente(@Valid @ModelAttribute ClienteDTO clienteDTO,
                                    BindingResult result) {
         if (result.hasErrors()) {
             return "cadastrar-cliente";
@@ -66,13 +66,13 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes/remover/{id}")
-    public String RemoverCliente(Model model, @PathVariable Long id){
+    public String removerCliente(Model model, @PathVariable Long id){
         model.addAttribute("cliente", clienteService.getClienteById(id));
         return "remover-cliente";
     }
 
     @PostMapping("/clientes/remover")
-    public String RemoverCliente(@ModelAttribute ClienteDTO clienteDTO){
+    public String removerCliente(@ModelAttribute ClienteDTO clienteDTO){
         clienteService.deleteCliente(clienteDTO);
         return "redirect:/clientes";
     }

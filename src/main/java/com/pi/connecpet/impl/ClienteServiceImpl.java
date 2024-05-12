@@ -1,4 +1,4 @@
-package com.pi.connecpet.serviceImpl;
+package com.pi.connecpet.impl;
 
 import com.pi.connecpet.dto.ClienteDTO;
 import com.pi.connecpet.mapper.ClienteMapper;
