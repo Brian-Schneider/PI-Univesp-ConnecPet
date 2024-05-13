@@ -34,15 +34,31 @@ public class PetSitterController {
         PetSitterDTO petSitterDTO = new PetSitterDTO();
         petSitterDTO.setPrestadorId(prestadorId);
         model.addAttribute("petSitterDTO", petSitterDTO);
-        System.out.println(petSitterDTO);
-        return "cadastrar-petsitter";
+        return "petsitters/cadastrar-petsitter";
     }
 
     @PostMapping("/petsitters/cadastrar/{prestadorId}")
     public String cadastrarPetSitter(@ModelAttribute PetSitterDTO petSitterDTO, @PathVariable(required = false) Long prestadorId) {
 
+        prestadorService.validarPrestadorId(prestadorId);
         petSitterService.savePetSitter(petSitterDTO, prestadorId);
-        return "redirect:/prestadores";
+        PrestadorDTO prestadorDTO = prestadorService.getPrestadorById(prestadorId);
+        return constructRedirectUrl(prestadorDTO);
+    }
+
+    @GetMapping("/petsitters/alterar/{prestadorId}")
+    public String alterarPetSitter(Model model, @PathVariable Long prestadorId) {
+        PetSitterDTO petSitterDTO = petSitterService.getPetSitterByPrestadorId(prestadorId);
+        model.addAttribute("petSitterDTO", petSitterDTO);
+        return "petsitters/alterar-petsitter";
+    }
+
+
+    private String constructRedirectUrl(PrestadorDTO prestadorDTO) {
+        if(prestadorDTO.getIsPetWalker()) {
+            return "redirect:/petwalkers/cadastrar/" + prestadorDTO.getId();
+        }
+        return "redirect:/prestadores/detalhes/" + prestadorDTO.getId();
     }
 
 

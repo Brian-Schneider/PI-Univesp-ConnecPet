@@ -11,6 +11,8 @@ import com.pi.connecpet.service.PetSitterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PetSitterServiceImpl implements PetSitterService {
 
@@ -39,5 +41,13 @@ public class PetSitterServiceImpl implements PetSitterService {
 
 
 
+    }
+
+    @Override
+    public PetSitterDTO getPetSitterByPrestadorId(Long prestadorId) {
+        PetSitter petSitter = Optional.ofNullable(petSitterRepository
+                        .findByPrestador_Id(prestadorId))
+                .orElseThrow(() -> new RuntimeException("Pet Sitter não encontrado para o Prestador id: " + prestadorId));
+        return petSitterMapper.toPetSitterDto(petSitter);
     }
 }

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html th:replace="~{components/layout :: layout}">
+<html th:replace="~{/../components/layout :: layout}">
 <body>
 <div th:fragment="content" class="container">
     <h1 class="my-4">Cadastrar Pet</h1>
-    <form action="#" th:with="actionUrl=${'/pets/cadastrar' + (clienteId != null ? '/' + clienteId : '')}" th:action="@{${actionUrl}}" th:object="${petDTO}" method="post">
+    <form action="#" th:action="@{/pets/alterar}" th:object="${petDTO}" method="post">
+        <input type="hidden" th:field="*{id}">
+
         <div class="form-group">
             <label for="nomePet">Nome do Pet</label>
             <input type="text" class="form-control" id="nomePet" th:field="*{nomePet}">
@@ -37,12 +39,16 @@
         </div>
         <div class="form-group">
             <label for="porte">Porte</label>
-            <input type="number" class="form-control" id="porte" th:field="*{porte}">
+            <select class="form-control" id="porte" th:field="*{porte}">
+                <option th:each="porte : ${porteValues}" th:value="${porte}" th:text="${porte}"></option>
+            </select>
             <span class="error text-danger" th:if="${#fields.hasErrors('porte')}" th:errors="*{porte}"></span>
         </div>
         <div class="form-group">
             <label for="sexo">Sexo</label>
-            <input type="number" class="form-control" id="sexo" th:field="*{sexo}">
+            <select class="form-control" id="sexo" th:field="*{sexo}">
+                <option th:each="sexo : ${sexoValues}" th:value="${sexo}" th:text="${sexo}"></option>
+            </select>
             <span class="error text-danger" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></span>
         </div>
         <div class="form-group">

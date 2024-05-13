@@ -1,7 +1,6 @@
 package com.pi.connecpet.controller;
 
 import com.pi.connecpet.dto.ClienteDTO;
-import com.pi.connecpet.dto.PetDTO;
 import com.pi.connecpet.service.ClienteService;
 import com.pi.connecpet.service.PetService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,32 +33,32 @@ public class ClienteController {
     @GetMapping("/clientes")
     public String listarClientes(Model model){
         model.addAttribute("listarClientes", clienteService.getAllClientes());
-        return "lista-clientes";
+        return "clientes/lista-clientes";
     }
 
     @GetMapping("/clientes/detalhes/{id}")
     public String detalhesCliente(Model model, @PathVariable Long id){
         model.addAttribute("detalhesCliente", clienteService.getClienteById(id));
-        return "detalhes-cliente";
+        return "clientes/detalhes-cliente";
     }
 
     @GetMapping("/clientes/cadastrar")
     public String cadastrarCliente(Model model){
         model.addAttribute("clienteDTO", new ClienteDTO());
-        return "cadastrar-cliente";
+        return "clientes/cadastrar-cliente";
     }
 
     @GetMapping("/clientes/alterar/{id}")
     public String alterarCliente(Model model, @PathVariable Long id){
         model.addAttribute("clienteDTO", clienteService.getClienteById(id));
-        return "alterar-cliente";
+        return "clientes/alterar-cliente";
     }
 
     @PostMapping("/clientes/cadastrar")
     public String cadastrarCliente(@Valid @ModelAttribute ClienteDTO clienteDTO,
                                    BindingResult result) {
         if (result.hasErrors()) {
-            return "cadastrar-cliente";
+            return "clientes/cadastrar-cliente";
         }
         clienteService.saveCliente(clienteDTO);
         return "redirect:/clientes";
@@ -68,7 +67,7 @@ public class ClienteController {
     @GetMapping("/clientes/remover/{id}")
     public String removerCliente(Model model, @PathVariable Long id){
         model.addAttribute("cliente", clienteService.getClienteById(id));
-        return "remover-cliente";
+        return "clientes/remover-cliente";
     }
 
     @PostMapping("/clientes/remover")

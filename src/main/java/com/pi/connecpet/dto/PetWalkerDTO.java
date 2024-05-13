@@ -13,6 +13,8 @@ public class PetWalkerDTO {
     @NotNull(message = "O campo Prestador é obrigatório")
     private Prestador prestador;
 
+    private Long prestadorId;
+
     @NotNull(message = "O campo Tempo de Passeio é obrigatório")
     private double tempoPasseio;
 
@@ -60,5 +62,13 @@ public class PetWalkerDTO {
 
     public void setValorHoraPasseio(double valorHoraPasseio) {
         this.valorHoraPasseio = valorHoraPasseio;
+    }
+
+    public Long getPrestadorId() {
+        return prestadorId;
+    }
+
+    public void setPrestadorId(Long prestadorId) {
+        this.prestadorId = prestadorId;
     }
 }

@@ -28,19 +28,19 @@ public class PrestadorController {
     public String listarPrestadores(@RequestParam(required = false) String tipo, Model model) {
         model.addAttribute("listarPrestadores", prestadorService.getAllPrestadores(tipo));
         model.addAttribute("tipo", tipo);
-        return "lista-prestadores";
+        return "prestadores/lista-prestadores";
     }
 
     @GetMapping("/prestadores/detalhes/{id}")
     public String detalhesPrestador(Model model, @PathVariable Long id) {
         model.addAttribute("detalhesPrestador", prestadorService.getPrestadorWithSitterAndOrWalkerById(id));
-        return "detalhes-prestador";
+        return "prestadores/detalhes-prestador";
     }
 
     @GetMapping("/prestadores/cadastrar")
     public String cadastrarPrestador(Model model) {
         model.addAttribute("prestadorDTO", new PrestadorDTO());
-        return "cadastrar-prestador";
+        return "prestadores/cadastrar-prestador";
     }
 
     @PostMapping("/prestadores/cadastrar")
@@ -51,10 +51,42 @@ public class PrestadorController {
         if (prestadorDTO.getIsPetSitter()) {
             return "redirect:/petsitters/cadastrar/" + prestadorCadastrado.getId();
         } else if (prestadorDTO.getIsPetWalker()) {
-            return "redirect:/petwalker/cadastrar";
+            return "redirect:/petwalkers/cadastrar/" + prestadorCadastrado.getId();
         } else {
-            return "lista-prestadores"; // return to the prestador details view
+            return "prestadores/lista-prestadores";
         }
+    }
+
+    @GetMapping("/prestadores/alterar/{id}")
+    public String alterarPrestador(Model model, @PathVariable Long id) {
+        model.addAttribute("prestadorDTO", prestadorService.getPrestadorById(id));
+        return "prestadores/alterar-prestador";
+    }
+
+    @PostMapping("/prestadores/alterar")
+    public String alterarPrestador(@ModelAttribute PrestadorDTO prestadorDTO, Model model) {
+        model.addAttribute("prestadorDTO", prestadorDTO);
+        prestadorService.savePrestador(prestadorDTO, prestadorDTO.getIsPetSitter(), prestadorDTO.getIsPetWalker());
+
+        if (prestadorDTO.getIsPetSitter()) {
+            return "redirect:/petsitters/alterar/" + prestadorDTO.getId();
+        } else if (prestadorDTO.getIsPetWalker()) {
+            return "redirect:/petwalkers/alterar/" + prestadorDTO.getId();
+        } else {
+            return "redirect:/prestadores/detalhes/" + prestadorDTO.getId();
+        }
+    }
+
+    @GetMapping("/prestadores/remover/{id}")
+    public String removerPrestador(Model model, @PathVariable Long id) {
+        model.addAttribute("prestador", prestadorService.getPrestadorById(id));
+        return "prestadores/remover-prestador";
+    }
+
+    @PostMapping("/prestadores/remover")
+    public String removerPrestador(@ModelAttribute PrestadorDTO prestadorDTO) {
+        prestadorService.deletePrestador(prestadorDTO);
+        return "redirect:/prestadores";
     }
 
 }

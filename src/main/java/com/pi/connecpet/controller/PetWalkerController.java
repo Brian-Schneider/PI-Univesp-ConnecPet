@@ -1,15 +1,15 @@
 package com.pi.connecpet.controller;
 
+import com.pi.connecpet.dto.PetSitterDTO;
 import com.pi.connecpet.dto.PetWalkerDTO;
 import com.pi.connecpet.service.PetWalkerService;
+import com.pi.connecpet.service.PrestadorService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -17,6 +17,9 @@ public class PetWalkerController {
 
     @Autowired
     private PetWalkerService petWalkerService;
+
+    @Autowired
+    private PrestadorService prestadorService;
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleException(Exception ex, HttpServletRequest request) {
@@ -26,15 +29,26 @@ public class PetWalkerController {
         return mav;
     }
 
-    @GetMapping("/petwalker/cadastrar")
-    public String cadastrarPetWalker(Model model) {
-        model.addAttribute("petWalkerDTO", new PetWalkerDTO());
-        return "cadastrar-petwalker";
+    @GetMapping("/petwalkers/cadastrar/{prestadorId}")
+    public String cadastrarPetWalker(Model model, @PathVariable Long prestadorId) {
+        PetWalkerDTO petWalkerDTO = new PetWalkerDTO();
+        petWalkerDTO.setPrestadorId(prestadorId);
+        model.addAttribute("petWalkerDTO", petWalkerDTO);
+        return "petwalkers/cadastrar-petwalker";
     }
 
-    @PostMapping("/petwalker/cadastrar")
-    public String cadastrarPetWalker(PetWalkerDTO petWalkerDTO) {
-        petWalkerService.savePetWalker(petWalkerDTO);
-        return "redirect:/prestadores";
+    @GetMapping("/petwalkers/alterar/{prestadorId}")
+    public String alterarPetWalker(Model model, @PathVariable Long prestadorId) {
+        PetWalkerDTO petWalkerDTO = petWalkerService.getPetWalkerByPrestadorId(prestadorId);
+        model.addAttribute("petWalkerDTO", petWalkerDTO);
+        return "petwalkers/alterar-petwalker";
+    }
+
+    @PostMapping("/petwalkers/cadastrar/{prestadorId}")
+    public String cadastrarPetWalker(@ModelAttribute PetWalkerDTO petWalkerDTO, @PathVariable Long prestadorId) {
+        prestadorService.validarPrestadorId(prestadorId);
+        petWalkerService.savePetWalker(petWalkerDTO, prestadorId);
+
+        return "redirect:/prestadores/detalhes/" + prestadorId;
     }
 }

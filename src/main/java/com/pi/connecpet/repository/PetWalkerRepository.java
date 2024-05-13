@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PetWalkerRepository extends JpaRepository<PetWalker, Long> {
+    PetWalker findByPrestador_Id(Long id);
 }

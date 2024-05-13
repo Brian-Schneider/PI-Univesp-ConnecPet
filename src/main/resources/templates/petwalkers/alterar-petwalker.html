@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html th:replace="~{/../components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+    <h2 class="text-center">Alterar Dados de Pet Walker</h2>
+    <form action="#" th:with="actionUrl=${'/petwalkers/cadastrar' + (prestadorId != null ? '/' + prestadorId : '')}" th:action="@{${actionUrl}}" th:object="${petWalkerDTO}" method="post">
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}" th:value="${petWalkerDTO.prestadorId}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="hidden" th:field="*{prestadorId}" th:value="${petWalkerDTO.prestadorId}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Tempo de Passeio</label>
+            <input type="number" step="0.01" th:field="*{tempoPasseio}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Portes Aceitos</label>
+            <div th:each="porte : ${T(com.pi.connecpet.model.enums.Porte).values()}">
+                <input type="checkbox" th:field="*{portesAceitos}" th:value="${porte}" /> <label th:text="${porte}"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Valor Hora Passeio</label>
+            <input type="number" step="0.01" th:field="*{valorHoraPasseio}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

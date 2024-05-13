@@ -8,9 +8,9 @@ public interface PrestadorService {
 
     PrestadorDTO getPrestadorWithSitterAndOrWalkerById(Long id);
 
-    public PrestadorDTO getPrestadorById(Long id);
+    PrestadorDTO getPrestadorById(Long id);
 
-    void updatePrestador(PrestadorDTO prestadorDTO);
+    void updatePrestador(PrestadorDTO prestadorDTO, Long Id);
 
     void deletePrestador(PrestadorDTO prestadorDTO);
 
@@ -21,4 +21,7 @@ public interface PrestadorService {
                                    boolean registroPetWalkerprestadorDTO);
 
     PrestadorDTO findById(Long prestadorId);
+
+    void validarPrestadorId(Long prestadorId);
+
 }

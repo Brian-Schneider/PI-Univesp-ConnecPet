@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html th:replace="~{components/layout :: layout}">
+<html th:replace="~{/../components/layout :: layout}">
 <body>
 <div th:fragment="content" class="container">
-    <h2 class="text-center">Register PetWalker</h2>
-    <form th:action="@{/petwalkers/cadastrar}" th:object="${petWalkerDTO}" method="post">
+    <h2 class="text-center">Cadastrar como Pet Walker</h2>
+    <form action="#" th:with="actionUrl=${'/petwalkers/cadastrar' + (prestadorId != null ? '/' + prestadorId : '')}" th:action="@{${actionUrl}}" th:object="${petWalkerDTO}" method="post">
+
         <div class="form-group">
-            <label>Prestador</label>
-            <input type="text" th:field="*{prestador}" class="form-control" required>
+            <input type="hidden" th:field="*{prestadorId}" th:value="${petWalkerDTO.prestadorId}" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Tempo de Passeio</label>
@@ -14,8 +14,9 @@
         </div>
         <div class="form-group">
             <label>Portes Aceitos</label>
-            <!-- You might want to replace this with a dropdown or multiple checkboxes, depending on how you want to represent the Porte enum -->
-            <input type="text" th:field="*{portesAceitos}" class="form-control" required>
+            <div th:each="porte : ${T(com.pi.connecpet.model.enums.Porte).values()}">
+                <input type="checkbox" th:field="*{portesAceitos}" th:value="${porte}" /> <label th:text="${porte}"></label>
+            </div>
         </div>
         <div class="form-group">
             <label>Valor Hora Passeio</label>

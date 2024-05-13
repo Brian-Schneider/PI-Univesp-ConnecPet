@@ -36,7 +36,7 @@ public class PetController {
     @GetMapping("/pets")
     public String ListarPets(Model model){
         model.addAttribute("listarPets", petService.getAllPets());
-        return "lista-pets";
+        return "pets/lista-pets";
     }
 
     @GetMapping("/pets/cadastrar")
@@ -48,7 +48,7 @@ public class PetController {
         model.addAttribute("listarClientes", clientesDTO);
         model.addAttribute("porteValues", petService.getPorteValues());
         model.addAttribute("sexoValues", petService.getSexoValues());
-        return "cadastrar-pet";
+        return "pets/cadastrar-pet";
     }
 
     @GetMapping("/pets/cadastrar/{clienteId}")
@@ -60,7 +60,7 @@ public class PetController {
         model.addAttribute("listarClientes", clienteService.getAllClientes());
         model.addAttribute("porteValues", petService.getPorteValues());
         model.addAttribute("sexoValues", petService.getSexoValues());
-        return "cadastrar-pet";
+        return "pets/cadastrar-pet";
     }
 
     @PostMapping("/pets/cadastrar/{clienteId}")
@@ -68,7 +68,7 @@ public class PetController {
                                BindingResult result, @PathVariable(required = false) Long clienteId) {
 
         if (result.hasErrors()) {
-            return "cadastrar-pet";
+            return "pets/cadastrar-pet";
         }
         petService.savePet(petDTO, clienteId);
         return "redirect:/clientes/detalhes/" + clienteId;
@@ -78,12 +78,12 @@ public class PetController {
     public String AlterarPet(Model model, @PathVariable Long id) {
         PetDTO petDTO = petService.getPetById(id);
         List<ClienteDTO> clientesDTO = clienteService.getAllClientes();
-        model.addAttribute("petDTO", petService.getPetById(id));
+        model.addAttribute("petDTO", petDTO);
         model.addAttribute("listarClientes", clientesDTO);
         model.addAttribute("clienteDTO", clienteService.getClienteById(petDTO.getClienteId()));
         model.addAttribute("porteValues", petService.getPorteValues());
         model.addAttribute("sexoValues", petService.getSexoValues());
-        return "alterar-pet";
+        return "pets/alterar-pet";
     }
 
     @PostMapping("/pets/alterar")
@@ -91,7 +91,7 @@ public class PetController {
                              BindingResult result) {
 
         if (result.hasErrors()) {
-            return "alterar-pet";
+            return "pets/alterar-pet";
         }
         petService.updatePet(petDTO);
         return "redirect:/";
@@ -101,7 +101,7 @@ public class PetController {
     public String RemoverPet(Model model, @PathVariable Long id) {
         PetDTO petDTO = petService.getPetById(id);
         model.addAttribute("pet", petDTO);
-        return "remover-pet";
+        return "pets/remover-pet";
     }
 
     @PostMapping("/pets/remover")
