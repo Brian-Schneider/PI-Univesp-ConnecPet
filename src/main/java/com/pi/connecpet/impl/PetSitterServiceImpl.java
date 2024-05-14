@@ -45,9 +45,7 @@ public class PetSitterServiceImpl implements PetSitterService {
 
     @Override
     public PetSitterDTO getPetSitterByPrestadorId(Long prestadorId) {
-        PetSitter petSitter = Optional.ofNullable(petSitterRepository
-                        .findByPrestador_Id(prestadorId))
-                .orElseThrow(() -> new RuntimeException("Pet Sitter não encontrado para o Prestador id: " + prestadorId));
-        return petSitterMapper.toPetSitterDto(petSitter);
+        PetSitter petSitter = petSitterRepository.findByPrestador_Id(prestadorId);
+        return petSitter != null ? petSitterMapper.toPetSitterDto(petSitter) : null;
     }
 }

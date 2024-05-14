@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PrestadorServiceImpl implements PrestadorService {
@@ -50,7 +51,9 @@ public class PrestadorServiceImpl implements PrestadorService {
         } else {
             prestadores = new ArrayList<>();
         }
-        return prestadorMapper.toListPrestadorDto(prestadores);
+
+        List<PrestadorDTO> prestadorDTO = prestadorMapper.toListPrestadorDto(prestadores);
+        return prestadorDTO;
     }
 
     @Override
@@ -101,7 +104,7 @@ public class PrestadorServiceImpl implements PrestadorService {
     public PrestadorDTO getPrestadorById(Long id) {
         return prestadorRepository.findById(id)
                 .map(prestadorMapper::toPrestadorDto)
-                .orElseThrow(() -> new RuntimeException("Prestador não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Prestador not found with id: " + id));
     }
 
     @Override
@@ -124,11 +127,13 @@ public class PrestadorServiceImpl implements PrestadorService {
                 .orElseThrow(() -> new RuntimeException("Prestador não encontrado"));
 
         if (prestador.getIsPetSitter()) {
-            petSitterRepository.delete(prestador.getPetSitter());
+            Optional.ofNullable(prestador.getPetSitter())
+                    .ifPresent(petSitter -> petSitterRepository.delete(petSitter));
         }
 
         if (prestador.getIsPetWalker()) {
-            petWalkerRepository.delete(prestador.getPetWalker());
+            Optional.ofNullable(prestador.getPetWalker())
+                    .ifPresent(petWalker -> petWalkerRepository.delete(petWalker));
         }
 
         // Delete the Prestador entity from the database

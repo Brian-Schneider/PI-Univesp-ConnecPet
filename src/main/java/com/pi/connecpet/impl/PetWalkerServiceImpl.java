@@ -11,7 +11,6 @@ import com.pi.connecpet.service.PetWalkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class PetWalkerServiceImpl implements PetWalkerService {
@@ -44,9 +43,7 @@ public class PetWalkerServiceImpl implements PetWalkerService {
 
     @Override
     public PetWalkerDTO getPetWalkerByPrestadorId(Long prestadorId) {
-        PetWalker petWalker = Optional.ofNullable(petWalkerRepository
-                        .findByPrestador_Id(prestadorId))
-                .orElseThrow(() -> new RuntimeException("Pet Walker não encontrado para o Prestador id: " + prestadorId));
-        return petWalkerMapper.toPetWalkerDto(petWalker);
+        PetWalker petWalker = petWalkerRepository.findByPrestador_Id(prestadorId);
+        return petWalker != null ? petWalkerMapper.toPetWalkerDto(petWalker) : null;
     }
 }

@@ -19,21 +19,29 @@ public class Pessoa {
     private String email;
 
     @Column(name = "tel_contato")
+    @Size(min = 14, max = 15, message = "O campo Telefone deve ter 10 ou 11 dígitos")
     private String telContato;
 
-    @Column(name = "tel_alternativo") @Size(max = 14, message = "O campo Telefone Alternativo deve ter no máximo 14 caracteres")
+    @Column(name = "tel_alternativo")
+    @Size(min = 14, max = 15, message = "O campo Telefone Alternativo deve ter 10 ou 11 dígitos")
     private String telContatoAlternativo;
 
     @Column(name = "endereco")
     private String endereco;
 
+    @Column(name = "numero_residencia")
+    private String numeroResidencia;
+
+    @Column(name = "bairro")
+    private String bairro;
+
     @Column(name = "cidade")
     private String cidade;
 
-    @Column(name = "estado") @Size(max = 50, message = "O campo Cidade deve ter no máximo 50 caracteres")
+    @Column(name = "estado")
     private String estado;
 
-    @Column(name = "cep") @Size(max = 9, message = "O campo CEP deve ter no máximo 9 caracteres")
+    @Column(name = "cep")
     private String cep;
 
     @Column(name = "foto")
@@ -117,6 +125,22 @@ public class Pessoa {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getNumeroResidencia() {
+        return numeroResidencia;
+    }
+
+    public void setNumeroResidencia(String numeroResidencia) {
+        this.numeroResidencia = numeroResidencia;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public String getFoto() {

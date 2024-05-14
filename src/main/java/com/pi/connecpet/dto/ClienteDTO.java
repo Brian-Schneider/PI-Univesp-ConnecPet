@@ -51,6 +51,14 @@ public class ClienteDTO {
     @Size(max = 9, message = "O campo CEP deve ter no máximo 9 caracteres")
     private String cep;
 
+    @NotNull(message = "O campo Número da Residência é obrigatório")
+    @Size(max = 10, message = "O campo Número da Residência deve ter no máximo 10 caracteres")
+    private String numeroResidencia;
+
+    @NotNull(message = "O campo Bairro é obrigatório")
+    @Size(max = 50, message = "O campo Bairro deve ter no máximo 50 caracteres")
+    private String bairro;
+
     @Size(max = 2000, message = "A URL não deve exceder 2000 caracteres")
     private String foto;
 
@@ -138,6 +146,22 @@ public class ClienteDTO {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getNumeroResidencia() {
+        return numeroResidencia;
+    }
+
+    public void setNumeroResidencia(String numeroResidencia) {
+        this.numeroResidencia = numeroResidencia;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public String getFoto() {

@@ -101,4 +101,20 @@ public class PetSitterDTO {
     public void setValorHoraHospedada(double valorHoraHospedada) {
         this.valorHoraHospedada = valorHoraHospedada;
     }
+
+    @Override
+    public String toString() {
+        return "PetSitterDTO{" +
+                "id=" + id +
+                ", prestadorId=" + prestadorId +
+                ", prestador=" + prestador +
+                ", hospedagem=" + hospedagem +
+                ", petsHospedados=" + petsHospedados +
+                ", limitePetsHospedados=" + limitePetsHospedados +
+                ", descricaoLocacao='" + descricaoLocacao + '\'' +
+                ", descricaoRotina='" + descricaoRotina + '\'' +
+                ", valorHoraHospedada=" + valorHoraHospedada +
+                '}';
+    }
+
 }

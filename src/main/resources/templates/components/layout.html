@@ -4,9 +4,14 @@
         <meta charset="UTF-8">
         <title>ConnecPet</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     </head>
     <body>
         <div th:replace="~{components/navbar::navbar}"></div>
         <div th:insert="~{this :: content}" class="container"></div>
+        <div th:fragment="page-scripts">
+            <script type="application/javascript"  src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script type="application/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        </div>
     </body>
 </html>
