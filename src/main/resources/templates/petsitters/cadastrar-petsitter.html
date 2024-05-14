@@ -6,21 +6,18 @@
     <form action="#" th:with="actionUrl=${'/petsitters/cadastrar' + (prestadorId != null ? '/' + prestadorId : '')}" th:action="@{${actionUrl}}" th:object="${petSitterDTO}" method="post">
 
         <div class="form-group">
-            <input type="hidden" th:field="*{prestadorId}" th:value="${petSitterDTO.prestadorId}" class="form-control" required>
-        </div>
-        <div class="form-group">
             <label>Hospedagem</label>
-            <input type="checkbox" th:field="*{hospedagem}" class="form-control">
+            <input type="checkbox" th:field="*{hospedagem}" id="hospedagem" class="form-control" onchange="toggleFields()">
         </div>
-        <div class="form-group">
+        <div class="form-group" id="petsHospedados" th:style="${petSitterDTO.hospedagem} ? '' : 'display: none;'">
             <label>Pets Hospedados</label>
             <input type="number" th:field="*{petsHospedados}" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group" id="limitePetsHospedados" th:style="${petSitterDTO.hospedagem} ? '' : 'display: none;'">
             <label>Limite Pets Hospedados</label>
             <input type="number" th:field="*{limitePetsHospedados}" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group" id="descricaoLocacao" th:style="${petSitterDTO.hospedagem} ? '' : 'display: none;'">
             <label>Descrição da Locação</label>
             <textarea th:field="*{descricaoLocacao}" class="form-control" maxlength="1000"></textarea>
         </div>
@@ -32,8 +29,22 @@
             <label>Valor/Hora Hospedada</label>
             <input type="number" th:field="*{valorHoraHospedada}" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
+
+    <script>
+
+        function toggleFields() {
+            var hospedagemChecked = document.getElementById('hospedagem').checked;
+            document.getElementById('petsHospedados').style.display = hospedagemChecked ? 'block' : 'none';
+            document.getElementById('limitePetsHospedados').style.display = hospedagemChecked ? 'block' : 'none';
+            document.getElementById('descricaoLocacao').style.display = hospedagemChecked ? 'block' : 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleFields();
+        });
+    </script>
 </div>
 </body>
 </html>
