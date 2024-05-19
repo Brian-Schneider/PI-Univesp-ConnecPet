@@ -4,8 +4,9 @@
 <div th:fragment="content" class="container">
     <h2 class="text-center">Alterar Dados de Pet Sitter</h2>
     <form action="#" th:with="actionUrl=${'/petsitters/cadastrar' + (prestadorId != null ? '/' + prestadorId : '')}" th:action="@{${actionUrl}}" th:object="${petSitterDTO}" method="post">
+        <input type="hidden" th:field="*{id}" th:value="${petSitterDTO.id}">
         <div class="form-group">
-            <input type="hidden" th:field="*{id}" th:value="${petSitterDTO.prestadorId}" class="form-control" required>
+            <input type="hidden" th:field="*{prestadorId}" th:value="${petSitterDTO.prestadorId}" class="form-control" required>
         </div>
         <div class="form-group">
             <input type="hidden" th:field="*{prestadorId}" th:value="${petSitterDTO.prestadorId}" class="form-control" required>
@@ -31,25 +32,13 @@
             <textarea th:field="*{descricaoRotina}" class="form-control" maxlength="1000"></textarea>
         </div>
         <div class="form">
-            <label>Valor/Hora Hospedada</label>
-            <input type="number" th:field="*{valorHoraHospedada}" class="form-control">
+            <label>Valor por Diária</label>
+            <input type="text" th:field="*{valorPorDiaria}" class="form-control valor-reais">
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Alterar</button>
     </form>
-
-    <script>
-
-        function toggleFields() {
-            var hospedagemChecked = document.getElementById('hospedagem').checked;
-            document.getElementById('petsHospedados').style.display = hospedagemChecked ? 'block' : 'none';
-            document.getElementById('limitePetsHospedados').style.display = hospedagemChecked ? 'block' : 'none';
-            document.getElementById('descricaoLocacao').style.display = hospedagemChecked ? 'block' : 'none';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            toggleFields();
-        });
-    </script>
+    <script src="/js/recebe-hospedagem.js" ></script>
+    <script src="/js/conversao-real-decimal.js" ></script>
 </div>
 </body>
 </html>

@@ -46,7 +46,7 @@ public class PetWalkerController {
 
     @PostMapping("/petwalkers/cadastrar/{prestadorId}")
     public String cadastrarPetWalker(@ModelAttribute PetWalkerDTO petWalkerDTO, @PathVariable Long prestadorId) {
-        prestadorService.validarPrestadorId(prestadorId);
+        prestadorService.validatePrestadorId(prestadorId);
         petWalkerService.savePetWalker(petWalkerDTO, prestadorId);
 
         return "redirect:/prestadores/detalhes/" + prestadorId;

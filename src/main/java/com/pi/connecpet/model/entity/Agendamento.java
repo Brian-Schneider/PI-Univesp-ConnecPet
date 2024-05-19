@@ -1,10 +1,13 @@
 package com.pi.connecpet.model.entity;
 
 
+import com.pi.connecpet.model.enums.StatusAgendamento;
 import com.pi.connecpet.model.enums.TipoServico;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "tb_agendamento",
@@ -32,13 +35,18 @@ public class Agendamento {
     private TipoServico tipoServico;
 
     @Column(name = "data_agendamento")
-    private LocalDateTime dataAgendamento;
+    private LocalDate dataAgendamento;
 
     @Column(name = "hora_agendamento")
-    private LocalDateTime horaAgendamento;
+    private LocalTime horaAgendamento;
 
     @Column(name = "valor_servico")
     private double valorServico;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private StatusAgendamento status;
+
 
     public Long getId() {
         return id;
@@ -88,20 +96,28 @@ public class Agendamento {
         this.prestador = prestador;
     }
 
-    public LocalDateTime getDataAgendamento() {
+    public LocalDate getDataAgendamento() {
         return dataAgendamento;
     }
 
-    public void setDataAgendamento(LocalDateTime dataAgendamento) {
+    public void setDataAgendamento(LocalDate dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
     }
 
-    public LocalDateTime getHoraAgendamento() {
+    public LocalTime getHoraAgendamento() {
         return horaAgendamento;
     }
 
-    public void setHoraAgendamento(LocalDateTime horaAgendamento) {
+    public void setHoraAgendamento(LocalTime horaAgendamento) {
         this.horaAgendamento = horaAgendamento;
+    }
+
+    public StatusAgendamento getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAgendamento status) {
+        this.status = status;
     }
 }
 

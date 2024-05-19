@@ -23,6 +23,6 @@ public interface PrestadorService {
 
     PrestadorDTO findById(Long prestadorId);
 
-    void validarPrestadorId(Long prestadorId);
+    void validatePrestadorId(Long prestadorId);
 
 }

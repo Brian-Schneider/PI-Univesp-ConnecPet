@@ -12,4 +12,6 @@ public interface PrestadorRepository extends JpaRepository<Prestador, Long> {
     List<Prestador> findByIsPetSitter(boolean b);
 
     List<Prestador> findByIsPetWalker(boolean b);
+
+
 }

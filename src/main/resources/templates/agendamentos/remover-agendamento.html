@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html th:replace="~{/../components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+    <form th:action="@{/agendamentos/remover}" th:object="${agendamento}" method="post">
+        <h4 class="my-4">[['Deseja realmente remover esse Agendamento']]</h4>
+        <input type="hidden" th:field="*{id}" />
+        <input type="submit" value="Sim" class="btn btn-danger" /> |
+        <a th:href="@{/agendamentos}" class="btn btn-primary">Não</a>
+    </form>
+</div>
+</body>
+</html>

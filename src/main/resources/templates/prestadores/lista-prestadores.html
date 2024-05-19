@@ -8,9 +8,9 @@
             <option value="PetSitter" th:selected="${tipo != null && tipo.equals('PetSitter')}">Pet Sitter</option>
             <option value="PetWalker" th:selected="${tipo != null && tipo.equals('PetWalker')}">Pet Walker</option>
         </select>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Filtrar</button>
     </form>
-    <a th:href="@{/prestadores/cadastrar}" class="btn btn-primary">Cadastrar Prestador</a>
+    <a th:href="@{/prestadores/cadastrar}" class="btn btn-primary mb-3 mt-3">Cadastrar Prestador</a>
 
     <table class="table">
         <thead>

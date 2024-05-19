@@ -4,7 +4,6 @@
 <div th:fragment="content" class="container">
     <h1 class="my-4">Cadastrar Cliente</h1>
     <form th:action="@{/clientes/cadastrar}" th:object="${clienteDTO}" method="post">
-        <input type="hidden" th:field="*{id}">
         <div class="form-group">
             <label for="primeiroNome">Primeiro Nome</label>
             <input type="text" class="form-control" id="primeiroNome" th:field="*{primeiroNome}">
@@ -16,47 +15,68 @@
             <span class="error text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" th:field="*{email}">
+            <label>Primeiro Nome</label>
+            <input type="text" th:field="*{primeiroNome}" class="form-control" required>
+            <span class="error text-danger" th:if="${#fields.hasErrors('primeiroNome')}" th:errors="*{primeiroNome}"></span>
+        </div>
+        <div class="form-group">
+            <label>Sobrenome</label>
+            <input type="text" th:field="*{sobrenome}" class="form-control" required>
+            <span class="error text-danger" th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}"></span>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" th:field="*{email}" class="form-control" required>
             <span class="error text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
         </div>
         <div class="form-group">
-            <label for="telContato">Telefone</label>
-            <input type="text" class="form-control" id="telContato" th:field="*{telContato}">
+            <label>Telefone</label>
+            <input type="text" th:field="*{telContato}" class="form-control tel" required>
             <span class="error text-danger" th:if="${#fields.hasErrors('telContato')}" th:errors="*{telContato}"></span>
         </div>
         <div class="form-group">
-            <label for="telContatoAlternativo">Telefone Alternativo</label>
-            <input type="text" class="form-control" id="telContatoAlternativo" th:field="*{telContatoAlternativo}">
+            <label>Telefone Alternativo</label>
+            <input type="text" th:field="*{telContatoAlternativo}" class="form-control tel">
             <span class="error text-danger" th:if="${#fields.hasErrors('telContatoAlternativo')}" th:errors="*{telContatoAlternativo}"></span>
         </div>
         <div class="form-group">
-            <label for="endereco">Endereço</label>
-            <input type="text" class="form-control" id="endereco" th:field="*{endereco}">
-            <span class="error text-danger" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
-        </div>
-        <div class="form-group">
-            <label for="cidade">Cidade</label>
-            <input type="text" class="form-control" id="cidade" th:field="*{cidade}">
-            <span class="error text-danger" th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}"></span>
-        </div>
-        <div class="form-group">
-            <label for="cep">CEP</label>
-            <input type="text" class="form-control" id="cep" th:field="*{cep}">
+            <label>CEP</label>
+            <input type="text" th:field="*{cep}" id="cep" class="form-control" required>
             <span class="error text-danger" th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"></span>
         </div>
         <div class="form-group">
-            <label for="estado">Estado</label>
-            <input type="text" class="form-control" id="estado" th:field="*{estado}">
+            <label>Endereço</label>
+            <input type="text" th:field="*{endereco}" class="form-control" required>
+            <span class="error text-danger" th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}"></span>
+        </div>
+        <div class="form-group">
+            <label>Cidade</label>
+            <input type="text" th:field="*{cidade}" class="form-control" required>
+            <span class="error text-danger" th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}"></span>
+        </div>
+        <div class="form-group">
+            <label>Estado</label>
+            <input type="text" th:field="*{estado}" class="form-control" required>
             <span class="error text-danger" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></span>
         </div>
         <div class="form-group">
-            <label for="foto">Foto</label>
-            <input type="text" class="form-control" id="foto" th:field="*{foto}">
+            <label>Número da Residência</label>
+            <input type="text" th:field="*{numeroResidencia}" id="num-resid" class="form-control">
+            <span class="error text-danger" th:if="${#fields.hasErrors('numeroResidencia')}" th:errors="*{numeroResidencia}"></span>
+        </div>
+        <div class="form-group">
+            <label>Bairro</label>
+            <input type="text" th:field="*{bairro}" id="bairro" class="form-control" required>
+            <span class="error text-danger" th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}"></span>
+        </div>
+        <div class="form-group">
+            <label>Foto</label>
+            <input type="text" th:field="*{foto}" class="form-control">
             <span class="error text-danger" th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Atualizar</button>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
+    <div th:replace="~{/../components/masks :: masks}"></div>
 </div>
 </body>
 </html>

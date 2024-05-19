@@ -1,38 +1,52 @@
 package com.pi.connecpet.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.pi.connecpet.model.entity.Cliente;
-import com.pi.connecpet.model.entity.Pet;
-import com.pi.connecpet.model.entity.Prestador;
+import com.pi.connecpet.model.enums.StatusAgendamento;
 import com.pi.connecpet.model.enums.TipoServico;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class AgendamentoDTO {
 
     private Long id;
 
     @JsonIgnoreProperties("agendamentos")
-    private Cliente cliente;
+    private ClienteDTO cliente;
+
+    private Long idCliente;
 
     @JsonIgnoreProperties("agendamentos")
-    private Pet pet;
+    private PetDTO pet;
+
+    private Long idPet;
 
     @JsonIgnoreProperties("agendamentos")
-    private Prestador prestador;
+    private PrestadorDTO prestador;
+
+    private Long idPrestador;
 
     @NotNull(message = "O campo Tipo de Serviço é obrigatório")
     private TipoServico tipoServico;
 
     @NotNull(message = "O campo Data Agendamento é obrigatório")
-    private LocalDateTime dataAgendamento;
+    private LocalDate dataAgendamento;
+
+    private String dataAgendamentoFormatada;
 
     @NotNull(message = "O campo Hora Agendamento é obrigatório")
-    private LocalDateTime horaAgendamento;
+    private LocalTime horaAgendamento;
+
+    @NotNull(message = "O campo Status é obrigatório")
+    private StatusAgendamento status;
 
     @NotNull(message = "O campo Valor do Serviço é obrigatório")
-    private double valorServico;
+    private BigDecimal valorServico;
+
+
 
     public Long getId() {
         return id;
@@ -42,27 +56,27 @@ public class AgendamentoDTO {
         this.id = id;
     }
 
-    public Cliente getCliente() {
+    public ClienteDTO getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(ClienteDTO cliente) {
         this.cliente = cliente;
     }
 
-    public Pet getPet() {
+    public PetDTO getPet() {
         return pet;
     }
 
-    public void setPet(Pet pet) {
+    public void setPet(PetDTO pet) {
         this.pet = pet;
     }
 
-    public Prestador getPrestador() {
+    public PrestadorDTO getPrestador() {
         return prestador;
     }
 
-    public void setPrestador(Prestador prestador) {
+    public void setPrestador(PrestadorDTO prestador) {
         this.prestador = prestador;
     }
 
@@ -74,27 +88,70 @@ public class AgendamentoDTO {
         this.tipoServico = tipoServico;
     }
 
-    public LocalDateTime getDataAgendamento() {
+    public LocalDate getDataAgendamento() {
         return dataAgendamento;
     }
 
-    public void setDataAgendamento(LocalDateTime dataAgendamento) {
+    public void setDataAgendamento(LocalDate dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataAgendamentoFormatada = dataAgendamento.format(formatter);
     }
 
-    public LocalDateTime getHoraAgendamento() {
+    public String getDataAgendamentoFormatada() {
+        return dataAgendamentoFormatada;
+    }
+
+    public void setDataAgendamentoFormatada(LocalDate dataAgendamentoFormatada) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.dataAgendamentoFormatada = dataAgendamentoFormatada.format(formatter);
+    }
+
+    public LocalTime getHoraAgendamento() {
         return horaAgendamento;
     }
 
-    public void setHoraAgendamento(LocalDateTime horaAgendamento) {
+    public void setHoraAgendamento(LocalTime horaAgendamento) {
         this.horaAgendamento = horaAgendamento;
     }
 
-    public double getValorServico() {
+    public BigDecimal getValorServico() {
         return valorServico;
     }
 
-    public void setValorServico(double valorServico) {
+    public void setValorServico(BigDecimal valorServico) {
         this.valorServico = valorServico;
+    }
+
+    public StatusAgendamento getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAgendamento status) {
+        this.status = status;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Long getIdPet() {
+        return idPet;
+    }
+
+    public void setIdPet(Long idPet) {
+        this.idPet = idPet;
+    }
+
+    public Long getIdPrestador() {
+        return idPrestador;
+    }
+
+    public void setIdPrestador(Long idPrestador) {
+        this.idPrestador = idPrestador;
     }
 }

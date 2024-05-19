@@ -4,6 +4,7 @@ import com.pi.connecpet.model.enums.Porte;
 import jakarta.persistence.*;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -22,10 +23,11 @@ public class PetWalker{
     private double tempoPasseio;
 
     @Column(name = "portes_aceitos")
+    @Enumerated(EnumType.STRING)
     private List<Porte> portesAceitos;
 
     @Column(name = "valor_hora_passeio")
-    private double valorHoraPasseio;
+    private BigDecimal valorHoraPasseio;
 
     public double getTempoPasseio() {
         return tempoPasseio;
@@ -59,11 +61,11 @@ public class PetWalker{
         this.portesAceitos = portesAceitos;
     }
 
-    public double getValorHoraPasseio() {
+    public BigDecimal getValorHoraPasseio() {
         return valorHoraPasseio;
     }
 
-    public void setValorHoraPasseio(double valorHoraPasseio) {
+    public void setValorHoraPasseio(BigDecimal valorHoraPasseio) {
         this.valorHoraPasseio = valorHoraPasseio;
     }
 }

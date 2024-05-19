@@ -5,6 +5,8 @@ import com.pi.connecpet.model.entity.Prestador;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
+
 public class PetSitterDTO {
 
     private Long id;
@@ -27,8 +29,9 @@ public class PetSitterDTO {
     @Size(max = 1000, message = "O campo Descrição da Rotina deve ter no máximo 1000 caracteres")
     private String descricaoRotina;
 
-    @NotNull(message = "O campo Valor da Hora Hospedada é obrigatório")
-    private double valorHoraHospedada;
+    @NotNull(message = "O campo Valor por Diária é obrigatório")
+    private BigDecimal valorPorDiaria;
+
 
     public Long getId() {
         return id;
@@ -86,10 +89,6 @@ public class PetSitterDTO {
         this.descricaoRotina = descricaoRotina;
     }
 
-    public double getValorHoraHospedada() {
-        return valorHoraHospedada;
-    }
-
     public Long getPrestadorId() {
         return prestadorId;
     }
@@ -98,23 +97,12 @@ public class PetSitterDTO {
         this.prestadorId = prestadorId;
     }
 
-    public void setValorHoraHospedada(double valorHoraHospedada) {
-        this.valorHoraHospedada = valorHoraHospedada;
+
+    public @NotNull(message = "O campo Valor por Diária é obrigatório") BigDecimal getValorPorDiaria() {
+        return valorPorDiaria;
     }
 
-    @Override
-    public String toString() {
-        return "PetSitterDTO{" +
-                "id=" + id +
-                ", prestadorId=" + prestadorId +
-                ", prestador=" + prestador +
-                ", hospedagem=" + hospedagem +
-                ", petsHospedados=" + petsHospedados +
-                ", limitePetsHospedados=" + limitePetsHospedados +
-                ", descricaoLocacao='" + descricaoLocacao + '\'' +
-                ", descricaoRotina='" + descricaoRotina + '\'' +
-                ", valorHoraHospedada=" + valorHoraHospedada +
-                '}';
+    public void setValorPorDiaria(@NotNull(message = "O campo Valor por Diária é obrigatório") BigDecimal valorPorDiaria) {
+        this.valorPorDiaria = valorPorDiaria;
     }
-
 }

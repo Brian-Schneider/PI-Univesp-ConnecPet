@@ -28,7 +28,6 @@
                         <td th:text="${pet.porte}"></td>
                         <td th:text="${pet.sexo}"></td>
                         <td>
-                            <a th:href="@{/pets/detalhes/{id}(id=${pet.id})}" class="btn btn-primary">Detalhes</a>
                             <a th:href="@{/pets/alterar/{id}(id=${pet.id})}" class="btn btn-primary">Alterar</a>
                             <a th:href="@{/pets/remover/{id}(id=${pet.id})}" class="btn btn-primary">Remover</a>
                         </td>

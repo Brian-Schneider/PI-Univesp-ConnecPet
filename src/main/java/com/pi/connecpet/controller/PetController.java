@@ -34,13 +34,13 @@ public class PetController {
     }
 
     @GetMapping("/pets")
-    public String ListarPets(Model model){
+    public String listarPets(Model model){
         model.addAttribute("listarPets", petService.getAllPets());
         return "pets/lista-pets";
     }
 
     @GetMapping("/pets/cadastrar")
-    public String CadastrarPet(Model model){
+    public String cadastrarPet(Model model){
         List<ClienteDTO> clientesDTO = clienteService.getAllClientes();
 
 
@@ -52,7 +52,7 @@ public class PetController {
     }
 
     @GetMapping("/pets/cadastrar/{clienteId}")
-    public String CadastrarPet(Model model, @PathVariable(required = false) Long clienteId){
+    public String cadastrarPet(Model model, @PathVariable(required = false) Long clienteId){
         if (clienteId == null) {
             model.addAttribute("clienteDTO", clienteService.getClienteById(clienteId));
         }
@@ -64,7 +64,7 @@ public class PetController {
     }
 
     @PostMapping("/pets/cadastrar/{clienteId}")
-    public String CadastrarPet(@Valid @ModelAttribute PetDTO petDTO,
+    public String cadastrarPet(@Valid @ModelAttribute PetDTO petDTO,
                                BindingResult result, @PathVariable(required = false) Long clienteId) {
 
         if (result.hasErrors()) {
@@ -75,7 +75,7 @@ public class PetController {
     }
 
     @GetMapping("/pets/alterar/{id}")
-    public String AlterarPet(Model model, @PathVariable Long id) {
+    public String alterarPet(Model model, @PathVariable Long id) {
         PetDTO petDTO = petService.getPetById(id);
         List<ClienteDTO> clientesDTO = clienteService.getAllClientes();
         model.addAttribute("petDTO", petDTO);
@@ -87,7 +87,7 @@ public class PetController {
     }
 
     @PostMapping("/pets/alterar")
-    public String AlterarPet(@Valid @ModelAttribute PetDTO petDTO,
+    public String alterarPet(@Valid @ModelAttribute PetDTO petDTO,
                              BindingResult result) {
 
         if (result.hasErrors()) {
@@ -98,14 +98,14 @@ public class PetController {
     }
 
     @GetMapping("/pets/remover/{id}")
-    public String RemoverPet(Model model, @PathVariable Long id) {
+    public String removerPet(Model model, @PathVariable Long id) {
         PetDTO petDTO = petService.getPetById(id);
         model.addAttribute("pet", petDTO);
         return "pets/remover-pet";
     }
 
     @PostMapping("/pets/remover")
-    public String RemoverPet(@ModelAttribute PetDTO petDTO) {
+    public String removerPet(@ModelAttribute PetDTO petDTO) {
         Long clienteId = petDTO.getClienteId();
         petService.deletePet(petDTO);
         return "redirect:/clientes/detalhes/" + clienteId;

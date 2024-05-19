@@ -4,6 +4,7 @@ import com.pi.connecpet.model.entity.Prestador;
 import com.pi.connecpet.model.enums.Porte;
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class PetWalkerDTO {
@@ -22,7 +23,7 @@ public class PetWalkerDTO {
     private List<Porte> portesAceitos;
 
     @NotNull(message = "O campo Valor Hora Passeio é obrigatório")
-    private double valorHoraPasseio;
+    private BigDecimal valorHoraPasseio;
 
     public Long getId() {
         return id;
@@ -56,11 +57,11 @@ public class PetWalkerDTO {
         this.portesAceitos = portesAceitos;
     }
 
-    public double getValorHoraPasseio() {
+    public BigDecimal getValorHoraPasseio() {
         return valorHoraPasseio;
     }
 
-    public void setValorHoraPasseio(double valorHoraPasseio) {
+    public void setValorHoraPasseio(BigDecimal valorHoraPasseio) {
         this.valorHoraPasseio = valorHoraPasseio;
     }
 

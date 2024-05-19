@@ -2,6 +2,8 @@ package com.pi.connecpet.model.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "tb_sitter")
 public class PetSitter{
@@ -29,8 +31,8 @@ public class PetSitter{
     @Column(name = "descricao_rotina")
     private String descricaoRotina;
 
-    @Column(name = "valor_hora_hospedada")
-    private double valorHoraHospedada;
+    @Column(name = "valor_diaria")
+    private BigDecimal valorPorDiaria;
 
     public int getPetsHospedados() {
         return petsHospedados;
@@ -88,11 +90,11 @@ public class PetSitter{
         this.descricaoRotina = descricaoRotina;
     }
 
-    public double getValorHoraHospedada() {
-        return valorHoraHospedada;
+    public BigDecimal getValorPorDiaria() {
+        return valorPorDiaria;
     }
 
-    public void setValorHoraHospedada(double valorHoraHospedada) {
-        this.valorHoraHospedada = valorHoraHospedada;
+    public void setValorPorDiaria(BigDecimal valorPorDiaria) {
+        this.valorPorDiaria = valorPorDiaria;
     }
 }

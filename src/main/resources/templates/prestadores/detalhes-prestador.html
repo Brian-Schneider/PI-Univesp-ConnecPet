@@ -40,26 +40,26 @@
                 <div class="card-header">Info. Pet Sitter</div>
                 <div class="card-body">
                     <p><strong>Aceita Hospedagens:</strong> <span th:if="${detalhesPrestador.getPetSitterDTO().isHospedagem() == true}">Sim</span><span th:if="${detalhesPrestador.getPetSitterDTO().isHospedagem() == false}">Não</span></p>
-                    <p><strong>Pets Hospedados:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().petsHospedados}"></span></p>
-                    <p><strong>Limite de Pets a Hospedar:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().limitePetsHospedados}"></span></p>
-                    <p><strong>Preço da Hora:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().valorHoraHospedada}"></span></p>
-                    <p><strong>Descrição da Locação:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().descricaoLocacao}"></span></p>
-                    <p><strong>Descrição da Rotina:</strong><span th:text="${detalhesPrestador.getPetSitterDTO().descricaoRotina}"></span></p>
+                    <p><strong>Pets Hospedados: </strong><span th:text="${detalhesPrestador.getPetSitterDTO().petsHospedados}"></span></p>
+                    <p><strong>Limite de Pets a Hospedar: </strong><span th:text="${detalhesPrestador.getPetSitterDTO().limitePetsHospedados}"></span></p>
+                    <p><strong>Preço da Diária:</strong><span class="valor-reais-exb" th:text="${#numbers.formatDecimal(detalhesPrestador.getPetSitterDTO().valorPorDiaria, 3,'POINT', 2,'COMMA')}"></span></p>
+                    <p><strong>Descrição da Locação: </strong><span th:text="${detalhesPrestador.getPetSitterDTO().descricaoLocacao}"></span></p>
+                    <p><strong>Descrição da Rotina: </strong><span th:text="${detalhesPrestador.getPetSitterDTO().descricaoRotina}"></span></p>
                 </div>
             </div>
 
             <div class="card bg-light mb-3" th:if="${detalhesPrestador.petWalkerDTO != null}">
                 <div class="card-header">Info. Pet Walker</div>
                 <div class="card-body">
-                    <p><strong>Tempo médio por passeio:</strong><span th:text="${detalhesPrestador.getPetWalkerDTO().tempoPasseio}"></span></p>
-                    <p><strong>Preço por Hora de Passeio:</strong><span th:text="${detalhesPrestador.getPetWalkerDTO().valorHoraPasseio}"></span></p>
-                    <p><strong>Portes Aceitos:</strong>
-                        <span th:each="porte : ${detalhesPrestador.getPetWalkerDTO().portesAceitos}" th:text="${porte} + ' | '"></span>
+                    <p><strong>Tempo Médio/Passeio (horas): </strong><span th:text="${detalhesPrestador.getPetWalkerDTO().tempoPasseio}"></span></p>
+                    <p><strong>Preço/Hora de Passeio:</strong><span class="valor-reais-exb" th:text="${#numbers.formatDecimal(detalhesPrestador.getPetWalkerDTO().valorHoraPasseio, 3,'POINT',2,'COMMA')}"></span></p>
+                    <strong>Portes Aceitos:</strong>
+                    <span th:each="porte, stat : ${detalhesPrestador.getPetWalkerDTO().portesAceitos}" th:text="${porte + (stat.last ? '' : ' | ')}"></span>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="/js/conversao-decimal-real.js"></script>
 </div>
 </body>
 </html>

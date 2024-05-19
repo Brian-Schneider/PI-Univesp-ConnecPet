@@ -40,7 +40,7 @@ public class PetSitterController {
     @PostMapping("/petsitters/cadastrar/{prestadorId}")
     public String cadastrarPetSitter(@ModelAttribute PetSitterDTO petSitterDTO, @PathVariable(required = false) Long prestadorId) {
 
-        prestadorService.validarPrestadorId(prestadorId);
+        prestadorService.validatePrestadorId(prestadorId);
         petSitterService.savePetSitter(petSitterDTO, prestadorId);
         PrestadorDTO prestadorDTO = prestadorService.getPrestadorById(prestadorId);
         return constructRedirectUrl(prestadorDTO);
@@ -56,7 +56,7 @@ public class PetSitterController {
 
     private String constructRedirectUrl(PrestadorDTO prestadorDTO) {
         if(prestadorDTO.getIsPetWalker()) {
-            return "redirect:/petwalkers/cadastrar/" + prestadorDTO.getId();
+            return "redirect:/petwalkers/alterar/" + prestadorDTO.getId();
         }
         return "redirect:/prestadores/detalhes/" + prestadorDTO.getId();
     }

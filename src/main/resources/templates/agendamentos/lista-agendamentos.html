@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html th:replace="~{/../components/layout :: layout}">
+<body>
+<div th:fragment="content">
+    <h1>Lista de Agendamentos</h1>
+    <a th:href="@{/agendamentos/cadastrar}" class="btn btn-primary">Cadastrar Agendamento</a>
+
+    <!-- Add a search bar -->
+    <input type="text" id="search" onkeyup="searchFunction()" placeholder="Search for agendamentos..">
+
+    <div class="row">
+        <div th:each="agendamento : ${listarAgendamentos}" class="col-md-4">
+            <div class="card" id="card-container">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${agendamento.getCliente().primeiroNome + ' ' + agendamento.getCliente().getSobrenome()}"></h5>
+                    <p class="card-text">
+                        <strong>Pet:</strong> <span th:text="${agendamento.getPet().getNomePet()}"></span><br>
+                        <strong>Prestador:</strong> <span th:text="${agendamento.getPrestador().primeiroNome + ' ' + agendamento.getPrestador().sobrenome}"></span><br>
+                        <strong>Tipo de Serviço:</strong> <span th:text="${agendamento.tipoServico == 'PET_WALKER' ? 'Pet Walker' : 'Pet Sitter'}"></span><br>
+                        <strong>Data Agendamento:</strong> <span th:text="${agendamento.dataAgendamentoFormatada}"></span><br>
+                        <strong>Hora Agendamento:</strong> <span th:text="${agendamento.horaAgendamento}"></span><br>
+                        <strong>Status:</strong> <span th:text="${agendamento.status}"></span><br>
+                        <strong>Valor do Serviço:</strong> <span th:text="${agendamento.valorServico}" class="valor-reais-exb"></span>
+                    </p>
+                    <a th:href="@{/agendamentos/alterar/{id}(id=${agendamento.id})}" class="btn btn-primary">Alterar</a>
+                    <a th:href="@{/agendamentos/remover/{id}(id=${agendamento.id})}" class="btn btn-primary">Remover</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/conversao-decimal-real.js"></script>
+    <script src="/js/pesquisa-agendamentos.js"></script>
+</div>
+</body>
+</html>

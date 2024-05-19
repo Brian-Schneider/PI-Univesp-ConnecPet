@@ -1,5 +1,7 @@
 package com.pi.connecpet.mapper;
 
+import com.pi.connecpet.dto.PetSitterDTO;
+import com.pi.connecpet.dto.PetWalkerDTO;
 import com.pi.connecpet.dto.PrestadorDTO;
 import com.pi.connecpet.model.entity.Prestador;
 import org.modelmapper.ModelMapper;
@@ -20,7 +22,19 @@ public class PrestadorMapper {
     }
 
     public PrestadorDTO toPrestadorDto(Prestador prestadorResponse) {
-        return mapper.map(prestadorResponse, PrestadorDTO.class);
+        PrestadorDTO prestadorDTO = mapper.map(prestadorResponse, PrestadorDTO.class);
+
+        if (prestadorResponse.getPetWalker() != null) {
+            PetWalkerDTO petWalkerDTO = mapper.map(prestadorResponse.getPetWalker(), PetWalkerDTO.class);
+            prestadorDTO.setPetWalkerDTO(petWalkerDTO);
+        }
+
+        if (prestadorResponse.getPetSitter() != null) {
+            PetSitterDTO petSitterDTO = mapper.map(prestadorResponse.getPetSitter(), PetSitterDTO.class);
+            prestadorDTO.setPetSitterDTO(petSitterDTO);
+        }
+
+        return prestadorDTO;
     }
 
     public List<PrestadorDTO> toListPrestadorDto(List<Prestador> prestadores) {

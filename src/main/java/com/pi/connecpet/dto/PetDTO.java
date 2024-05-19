@@ -50,7 +50,7 @@ public class PetDTO {
     private Long clienteId;
 
     @JsonIgnoreProperties("pet")
-    private List<Agendamento> agendamentos;
+    private List<AgendamentoDTO> agendamentos;
 
     public Long getId() {
         return id;
@@ -148,11 +148,11 @@ public class PetDTO {
         this.cliente = cliente;
     }
 
-    public List<Agendamento> getAgendamentos() {
+    public List<AgendamentoDTO> getAgendamentos() {
         return agendamentos;
     }
 
-    public void setAgendamentos(List<Agendamento> agendamentos) {
+    public void setAgendamentos(List<AgendamentoDTO> agendamentos) {
         this.agendamentos = agendamentos;
     }
 }

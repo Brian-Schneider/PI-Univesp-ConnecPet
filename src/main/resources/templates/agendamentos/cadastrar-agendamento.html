@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html th:replace="~{/../components/layout :: layout}">
+<body>
+<div th:fragment="content" class="container">
+    <h1 class="my-4">Cadastrar Agendamento</h1>
+    <form id="idForm" th:action="@{/agendamentos/cadastrar}" th:object="${agendamentoDTO}" onsubmit="return false" method="post">
+        <div class="form-group">
+            <label for="cliente">Cliente</label>
+            <select class="form-control" id="cliente" th:field="*{idCliente}">
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('idCliente')}" th:errors="*{idCliente}"></span>
+        </div>
+        <div class="form-group">
+            <label for="pet">Pet</label>
+            <select class="form-control" id="pet" th:field="*{idPet}">
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('idPet')}" th:errors="*{idPet}">r</span>
+        </div>
+        <div class="form-group">
+            <label for="servico">Serviço</label>
+            <select class="form-control" id="servico" th:field="*{tipoServico}">
+                <option value="PET_WALKER">Pet Walker</option>
+                <option value="PET_SITTER">Pet Sitter</option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('tipoServico')}" th:errors="*{tipoServico}">r</span>
+        </div>
+        <div class="form-group">
+            <label for="prestador">Prestador</label>
+            <select class="form-control" id="prestador" th:field="*{idPrestador}">
+                <!-- Options will be added by AJAX -->
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('idPrestador')}" th:errors="*{idPrestador}"></span>
+        </div>
+        <div class="form-group">
+            <label for="dataAgendamento">Data Agendamento</label>
+            <input type="date" class="form-control" id="dataAgendamento" th:field="*{dataAgendamento}">
+            <span class="text-danger" th:if="${#fields.hasErrors('dataAgendamento')}" th:errors="*{dataAgendamento}"></span>
+        </div>
+        <div class="form-group">
+            <label for="horaAgendamento">Hora Agendamento</label>
+            <input type="time" class="form-control" id="horaAgendamento" th:field="*{horaAgendamento}">
+            <span class="text-danger" th:if="${#fields.hasErrors('horaAgendamento')}" th:errors="*{horaAgendamento}"></span>
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status" th:field="*{status}">
+                <option th:each="status : ${T(com.pi.connecpet.model.enums.StatusAgendamento).values()}" th:value="${status}" th:text="${status}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status Error</span>
+        </div>
+        <div class="form-group" id="tempo-passeio-container" style="display: none;">
+            <label for="tempo-med-passeio">Tempo Médio de Passeio</label>
+            <input type="number" readonly class="form-control" id="tempo-med-passeio" th:field="*{prestador.petWalkerDTO.tempoPasseio}">
+            <span class="text-danger" th:if="${#fields.hasErrors('prestador.petWalkerDTO.tempoPasseio')}" th:errors="*{prestador.petWalkerDTO.tempoPasseio}">Walk Time Error</span>
+        </div>
+        <div class="form-group" id="preco-passeio-container" style="display: none;">
+            <label for="preco-passeio">Preço Passeio</label>
+            <input type="text" readonly class="form-control valor-reais" id="preco-passeio" th:field="*{valorServico}">
+            <span class="text-danger" th:if="${#fields.hasErrors('prestador.petWalkerDTO.valorHoraPasseio')}" th:errors="*{prestador.petWalkerDTO.valorHoraPasseio}">Walk Price Error</span>
+        </div>
+        <div class="form-group" id="preco-diaria-container" style="display: none;">
+            <label for="preco-diaria">Valor da Diária</label>
+            <input type="text" readonly class="form-control valor-reais" id="preco-diaria" th:field="*{valorServico}">
+            <span class="text-danger" th:if="${#fields.hasErrors('prestador.petSitterDTO.valorPorDiaria')}" th:errors="*{prestador.petSitterDTO.valorPorDiaria}">Hours Error</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+
+    <script src="/js/listas-cadastro-agendamentos.js"></script>
+    <script src="/js/conversao-real-decimal.js" ></script>
+</div>
+</body>

@@ -113,7 +113,7 @@ public class PrestadorServiceImpl implements PrestadorService {
     }
 
     @Override
-    public void validarPrestadorId(Long prestadorId) {
+    public void validatePrestadorId(Long prestadorId) {
         if (prestadorId == null || prestadorId <= 0) {
             throw new IllegalArgumentException("PrestadorId deve ser um número maior que zero.");
         }
@@ -136,7 +136,7 @@ public class PrestadorServiceImpl implements PrestadorService {
                     .ifPresent(petWalker -> petWalkerRepository.delete(petWalker));
         }
 
-        // Delete the Prestador entity from the database
         prestadorRepository.delete(prestador);
     }
+
 }

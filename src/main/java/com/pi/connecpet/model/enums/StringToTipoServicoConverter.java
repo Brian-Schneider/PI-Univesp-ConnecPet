@@ -3,17 +3,17 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
 @ControllerAdvice
-public class StringToPorteConverter implements Converter<String, Porte> {
+public class StringToTipoServicoConverter implements Converter<String, TipoServico>{
 
     @Override
-    public Porte convert(String source) {
+    public TipoServico convert(String source) {
         if (source == null || source.isEmpty()) {
             return null;
         }
         try {
-            return Porte.valueOf(source);
+            return TipoServico.valueOf(source);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Essa string não tem correspondência com um valor do enum Porte: " + source);
+            throw new IllegalArgumentException("Essa string não tem correspondência com um valor do enum TipoServico: " + source);
         }
     }
 }

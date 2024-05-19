@@ -1,8 +1,8 @@
 package com.pi.connecpet.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pi.connecpet.model.entity.Agendamento;
-import com.pi.connecpet.model.entity.Pet;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -63,10 +63,10 @@ public class ClienteDTO {
     private String foto;
 
     @JsonIgnoreProperties("cliente")
-    private List<Pet> pets;
+    private List<PetDTO> pets;
 
     @JsonIgnoreProperties("cliente")
-    private List<Agendamento> agendamentos;
+    private List<AgendamentoDTO> agendamentos;
 
     public Long getId() {
         return id;
@@ -172,19 +172,19 @@ public class ClienteDTO {
         this.foto = foto;
     }
 
-    public List<Pet> getPets() {
-        return pets;
+    public List<PetDTO> getPets() {
+        return this.pets;
     }
 
-    public void setPets(List<Pet> pets) {
+    public void setPets(List<PetDTO> pets) {
         this.pets = pets;
     }
 
-    public List<Agendamento> getAgendamentos() {
+    public List<AgendamentoDTO> getAgendamentos() {
         return agendamentos;
     }
 
-    public void setAgendamentos(List<Agendamento> agendamentos) {
+    public void setAgendamentos(List<AgendamentoDTO> agendamentos) {
         this.agendamentos = agendamentos;
     }
 }

@@ -2,7 +2,7 @@
 <html th:replace="~{/../components/layout :: layout}">
 <body>
 <div th:fragment="content" class="container">
-    <h1 class="my-4">Cadastrar Pet</h1>
+    <h1 class="my-4">Alterar Pet</h1>
     <form action="#" th:action="@{/pets/alterar}" th:object="${petDTO}" method="post">
         <input type="hidden" th:field="*{id}">
 
@@ -62,7 +62,7 @@
             <span class="error text-danger" th:if="${#fields.hasErrors('foto')}" th:errors="*{foto}"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">Alterar</button>
     </form>
 </div>
 </body>
