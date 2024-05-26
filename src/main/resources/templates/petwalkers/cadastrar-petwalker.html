@@ -9,7 +9,7 @@
             <input type="hidden" th:field="*{prestadorId}" th:value="${petWalkerDTO.prestadorId}" class="form-control" required>
         </div>
         <div class="form-group">
-            <label>Tempo de Passeio</label>
+            <label>Tempo de Passeio (minutos)</label>
             <input type="number" step="0.01" th:field="*{tempoPasseio}" class="form-control" required>
         </div>
         <div class="form-group">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label>Valor Hora Passeio</label>
+            <label>Valor por Passeio</label>
             <input type="text" th:field="*{valorHoraPasseio}" class="form-control valor-reais" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

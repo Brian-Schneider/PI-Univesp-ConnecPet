@@ -19,11 +19,9 @@ public class Pessoa {
     private String email;
 
     @Column(name = "tel_contato")
-    @Size(min = 14, max = 15, message = "O campo Telefone deve ter 10 ou 11 dígitos")
     private String telContato;
 
     @Column(name = "tel_alternativo")
-    @Size(min = 14, max = 15, message = "O campo Telefone Alternativo deve ter 10 ou 11 dígitos")
     private String telContatoAlternativo;
 
     @Column(name = "endereco")

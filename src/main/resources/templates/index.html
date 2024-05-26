@@ -1,9 +1,15 @@
-
 <!DOCTYPE html>
 <html th:replace="~{components/layout :: layout}">
-    <body>
-        <div th:fragment="content">
-            <!-- Home vem aqui! -->
+<body>
+<div th:fragment="content">
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-Vindo ao ConnecPet</h1>
+            <p class="lead">Uma plataforma pra você agendar serviços de Pet Sitting e Pet Walking</p>
+            <hr class="my-4">
+            <p>Clique no botão abaixo e faça um agendamento agora!</p>
+            <a class="btn btn-primary btn-lg" href="/agendamentos/cadastrar" role="button">Agendamento</a>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+</body>

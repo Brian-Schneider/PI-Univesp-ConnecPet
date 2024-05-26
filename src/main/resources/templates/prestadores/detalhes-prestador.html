@@ -14,7 +14,6 @@
                 <img th:src="${detalhesPrestador.foto}" class="card-img-top" alt="Foto Prestador">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${detalhesPrestador.primeiroNome + ' ' + detalhesPrestador.sobrenome}"></h5>
-                    <p><strong>ID:</strong> <span th:text="${detalhesPrestador.id}"></span></p>
                     <p><strong>Nome:</strong> <span th:text="${detalhesPrestador.primeiroNome + ' ' + detalhesPrestador.sobrenome}"></span></p>
                     <p><strong>Endereço:</strong> <span th:text="${detalhesPrestador.endereco}"></span></p>
                     <p><strong>Cidade:</strong> <span th:text="${detalhesPrestador.cidade}"></span></p>
@@ -51,8 +50,8 @@
             <div class="card bg-light mb-3" th:if="${detalhesPrestador.petWalkerDTO != null}">
                 <div class="card-header">Info. Pet Walker</div>
                 <div class="card-body">
-                    <p><strong>Tempo Médio/Passeio (horas): </strong><span th:text="${detalhesPrestador.getPetWalkerDTO().tempoPasseio}"></span></p>
-                    <p><strong>Preço/Hora de Passeio:</strong><span class="valor-reais-exb" th:text="${#numbers.formatDecimal(detalhesPrestador.getPetWalkerDTO().valorHoraPasseio, 3,'POINT',2,'COMMA')}"></span></p>
+                    <p><strong>Tempo Médio/Passeio (minutos): </strong><span th:text="${detalhesPrestador.getPetWalkerDTO().tempoPasseio}"></span></p>
+                    <p><strong>Preço por Passeio:</strong><span class="valor-reais-exb" th:text="${#numbers.formatDecimal(detalhesPrestador.getPetWalkerDTO().valorHoraPasseio, 3,'POINT',2,'COMMA')}"></span></p>
                     <strong>Portes Aceitos:</strong>
                     <span th:each="porte, stat : ${detalhesPrestador.getPetWalkerDTO().portesAceitos}" th:text="${porte + (stat.last ? '' : ' | ')}"></span>
                 </div>

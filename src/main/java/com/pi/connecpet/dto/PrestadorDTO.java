@@ -125,7 +125,11 @@ public class PrestadorDTO {
     }
 
     public void setTelContatoAlternativo(String telContatoAlternativo) {
-        this.telContatoAlternativo = telContatoAlternativo;
+        if (telContatoAlternativo != null && telContatoAlternativo.trim().isEmpty()) {
+            this.telContatoAlternativo = null;
+        } else {
+            this.telContatoAlternativo = telContatoAlternativo;
+        }
     }
 
     public String getEndereco() {

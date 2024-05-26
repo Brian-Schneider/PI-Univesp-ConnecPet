@@ -5,8 +5,7 @@
     <h1>Lista de Agendamentos</h1>
     <a th:href="@{/agendamentos/cadastrar}" class="btn btn-primary">Cadastrar Agendamento</a>
 
-    <!-- Add a search bar -->
-    <input type="text" id="search" onkeyup="searchFunction()" placeholder="Search for agendamentos..">
+    <input type="text" id="search" onkeyup="searchFunction()" placeholder="Pesquisar prestador...">
 
     <div class="row">
         <div th:each="agendamento : ${listarAgendamentos}" class="col-md-4">

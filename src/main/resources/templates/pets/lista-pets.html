@@ -8,7 +8,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Dono</th>
                         <th scope="col">Espécie/Raça</th>
@@ -20,7 +19,6 @@
                 </thead>
                 <tbody>
                     <tr th:each="pet : ${listarPets}">
-                        <th scope="row" th:text="${pet.id}"></th>
                         <td th:text="${pet.nomePet}"></td>
                         <td th:text="${pet.cliente.primeiroNome + ' ' + pet.cliente.sobrenome}"></td>
                         <td th:text="${pet.especie + '/' + pet.raca}"></td>

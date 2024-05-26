@@ -3,6 +3,7 @@ package com.pi.connecpet.controller;
 import com.pi.connecpet.dto.PetSitterDTO;
 import com.pi.connecpet.dto.PrestadorDTO;
 import com.pi.connecpet.service.PetSitterService;
+import com.pi.connecpet.service.PetWalkerService;
 import com.pi.connecpet.service.PrestadorService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class PetSitterController {
 
     @Autowired
     private PetSitterService petSitterService;
+
+    @Autowired
+    private PetWalkerService petWalkerService;
 
     @Autowired
     private PrestadorService prestadorService;
@@ -53,10 +57,21 @@ public class PetSitterController {
         return "petsitters/alterar-petsitter";
     }
 
+    @PostMapping("/petsitters/alterar/{prestadorId}")
+    public String alterarPetSitter(@ModelAttribute PetSitterDTO petSitterDTO, @PathVariable(required = false) Long prestadorId) {
+        petSitterService.savePetSitter(petSitterDTO, prestadorId);
+        PrestadorDTO prestadorDTO = prestadorService.getPrestadorById(prestadorId);
+        return constructRedirectUrl(prestadorDTO);
+    }
+
 
     private String constructRedirectUrl(PrestadorDTO prestadorDTO) {
         if(prestadorDTO.getIsPetWalker()) {
-            return "redirect:/petwalkers/alterar/" + prestadorDTO.getId();
+            if (petWalkerService.getPetWalkerByPrestadorId(prestadorDTO.getId()) != null) {
+                return "redirect:/petwalkers/alterar/" + prestadorDTO.getId();
+            } else {
+                return "redirect:/petwalkers/cadastrar/" + prestadorDTO.getId();
+            }
         }
         return "redirect:/prestadores/detalhes/" + prestadorDTO.getId();
     }
